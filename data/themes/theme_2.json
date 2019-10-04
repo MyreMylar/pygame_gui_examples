@@ -1,0 +1,142 @@
+{
+    "defaults": {
+        "colours": {
+            "normal_bg": "#fb9e91",
+            "hovered_bg": "#fbda91",
+            "disabled_bg": "#cb6e61",
+            "selected_bg": "#fb0091",
+            "dark_bg": "#fb8691",
+            "normal_text": "#202020",
+            "hovered_text": "#303030",
+            "selected_text": "#404040",
+            "disabled_text": "#000000",
+            "link_text": "#0000EE",
+            "link_hover": "#2020FF",
+            "link_selected": "#551A8B",
+            "text_shadow": "#777777",
+            "border": "#DDDDDD",
+            "filled_bar": "#f4251b",
+            "unfilled_bar": "#CCCCCC"
+        }
+    },
+
+    "vertical_scroll_bar":
+    {
+        "colours":
+        {
+            "selected_bg": "#fb9e91"
+        }
+    },
+
+    "horizontal_slider":
+    {
+        "colours":
+        {
+            "normal_bg": "#25292e",
+            "hovered_bg": "#35393e",
+            "disabled_bg": "#25292e",
+            "selected_bg": "#25292e",
+            "active_bg": "#193784",
+            "dark_bg": "#15191e",
+            "normal_text": "#c5cbd8",
+            "hovered_text": "#FFFFFF",
+            "selected_text": "#FFFFFF",
+            "disabled_text": "#6d736f"
+        }
+    },
+
+    "button":
+    {
+        "misc":
+        {
+            "text_horiz_alignment": "center",
+            "text_vert_alignment": "center",
+            "tool_tip_delay": "1.0"
+        }
+    },
+
+    "tool_tip":
+    {
+        "colours":
+        {
+            "dark_bg": "#fb9e91"
+        },
+
+        "misc":
+        {
+            "padding": "8,8",
+            "border_width": "1"
+        }
+    },
+
+    "#message_window_title_bar":
+    {
+        "font":
+        {
+            "name": "montserrat",
+            "size": "12",
+            "bold": "0",
+            "italic": "1",
+            "regular_path": "data/fonts/Montserrat-Regular.ttf",
+            "bold_path": "data/fonts/Montserrat-Bold.ttf",
+            "italic_path": "data/fonts/Montserrat-Italic.ttf",
+            "bold_italic_path": "data/fonts/Montserrat-BoldItalic.ttf"
+        },
+
+        "misc":
+        {
+            "text_horiz_alignment": "left",
+            "text_horiz_alignment_padding": "10"
+        }
+    },
+
+    "#hover_me_button":
+    {
+        "images":
+        {
+            "normal_image": {
+                "path": "data/images/splat.png",
+                "sub_surface_rect": "0,0,32,32"
+            },
+            "hovered_image": {
+                "path": "data/images/splat.png",
+                "sub_surface_rect": "32,0,32,32"
+            }
+        }
+    },
+
+    "#cool_slider":
+    {
+        "colours":
+        {
+            "dark_bg": "#A59999"
+        }
+    },
+
+    "text_entry_line":
+    {
+         "misc":
+         {
+             "border_width": "1",
+             "padding": "4,2"
+         }
+    },
+
+    "drop_down_menu":
+    {
+        "misc":
+        {
+            "expand_direction": "down"
+        }
+    },
+
+    "screen_space_health_bar":
+    {
+        "colours":
+        {
+            "normal_text": "#FFFFFF"
+        }
+    }
+
+
+}
