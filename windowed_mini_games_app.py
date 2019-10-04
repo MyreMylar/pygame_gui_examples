@@ -49,7 +49,6 @@ class PongWindow(UIWindow):
                                             )
 
         game_surface_size = (self.get_container().rect.width - 4, self.get_container().rect.height - 24)
-        print(game_surface_size)
         self.game_surface_element = UIImage(pygame.Rect((2, 22),
                                                         game_surface_size),
                                             pygame.Surface(game_surface_size).convert(),
@@ -68,7 +67,6 @@ class PongWindow(UIWindow):
             if self.menu_bar.held:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 if not self.grabbed_window:
-                    print("grabbed")
                     self.window_stack.move_window_to_front(self)
                     self.grabbed_window = True
                     self.starting_grab_difference = (mouse_x - self.rect.x,
