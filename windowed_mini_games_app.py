@@ -30,8 +30,8 @@ class PongWindow(UIWindow):
         self.menu_bar = UIButton(relative_rect=pygame.Rect((0, 0),
                                                            ((self.rect.width - shadow_padding[0] * 2) - 20, 20)),
                                  text='Super Awesome Pong!',
-                                 ui_manager=ui_manager,
-                                 ui_container=self.get_container(),
+                                 manager=ui_manager,
+                                 container=self.get_container(),
                                  element_ids=self.element_ids
                                  )
         self.menu_bar.set_hold_range((100, 100))
@@ -43,8 +43,8 @@ class PongWindow(UIWindow):
                                                                        0),
                                                                       (20, 20)),
                                             text='╳',
-                                            ui_manager=ui_manager,
-                                            ui_container=self.get_container(),
+                                            manager=ui_manager,
+                                            container=self.get_container(),
                                             element_ids=self.element_ids
                                             )
 
@@ -52,8 +52,8 @@ class PongWindow(UIWindow):
         self.game_surface_element = UIImage(pygame.Rect((2, 22),
                                                         game_surface_size),
                                             pygame.Surface(game_surface_size).convert(),
-                                            ui_manager=ui_manager,
-                                            ui_container=self.get_container(),
+                                            manager=ui_manager,
+                                            container=self.get_container(),
                                             element_ids=self.element_ids)
 
         self.pong_game = PongGame(game_surface_size)

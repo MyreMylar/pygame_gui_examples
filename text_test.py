@@ -76,7 +76,7 @@ html_text_line = UITextBox(
     ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
     ' sollicitudin.</font></font>',
     pygame.Rect(10, 10, 500, 580),
-    ui_manager=ui_manager)
+    manager=ui_manager)
 
 time_2 = clock.tick()
 
@@ -88,7 +88,7 @@ htm_text_block_2 = UITextBox('<font face=fira_code size=2 color=#000000><b>Hey, 
                              '<body bgcolor=#990000>What if we do a really long word?</body> '
                              '<b><i>derp FALALALALALALALXALALALXALALALALAAPaaaaarp gosh</b></i></font>',
                              pygame.Rect((520, 10), (250, 200)),
-                             ui_manager=ui_manager,
+                             manager=ui_manager,
                              object_id="#text_box_2")
 htm_text_block_2.set_active_effect('typing_appear')
 time_3 = clock.tick()

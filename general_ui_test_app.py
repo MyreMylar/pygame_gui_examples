@@ -40,14 +40,14 @@ class EverythingWindow(UIWindow):
         self.close_window_button = UIButton(relative_rect=pygame.Rect((self.get_container().rect.width-20, 0),
                                                                       (20, 20)),
                                             text='╳',
-                                            ui_manager=ui_manager,
-                                            ui_container=self.get_container()
+                                            manager=ui_manager,
+                                            container=self.get_container()
                                             )
         self.menu_bar = UIButton(relative_rect=pygame.Rect((0, 0),
                                                            (self.get_container().rect.width-20, 20)),
                                  text='Everything Container',
-                                 ui_manager=ui_manager,
-                                 ui_container=self.get_container(),
+                                 manager=ui_manager,
+                                 container=self.get_container(),
                                  object_id='#message_window_title_bar'
                                  )
         self.menu_bar.set_hold_range((100, 100))
@@ -61,20 +61,20 @@ class EverythingWindow(UIWindow):
                                               50.0,
                                               (0.0, 100.0),
                                               self.ui_manager,
-                                              ui_container=self.get_container())
+                                              container=self.get_container())
 
         self.slider_label = UILabel(pygame.Rect(((self.rect.width / 2) + 250,
                                                  self.rect.height * 0.70),
                                                 (24, 20)),
                                     str(int(self.test_slider.get_current_value())),
                                     self.ui_manager,
-                                    ui_container=self.get_container())
+                                    container=self.get_container())
 
         self.test_text_entry = UITextEntryLine(pygame.Rect((self.rect.width / 2,
                                                             self.rect.height * 0.50),
                                                            (200.0, -1)),
                                                self.ui_manager,
-                                               ui_container=self.get_container())
+                                               container=self.get_container())
 
         current_resolution_string = 'Item 1'
         self.test_drop_down_menu = UIDropDownMenu(['Item 1',
@@ -88,13 +88,13 @@ class EverythingWindow(UIWindow):
                                                                self.rect.height * 0.3),
                                                               (200.0, 20)),
                                                   self.ui_manager,
-                                                  ui_container=self.get_container())
+                                                  container=self.get_container())
 
         self.health_bar = UIScreenSpaceHealthBar(pygame.Rect((self.rect.width / 9,
                                                               self.rect.height * 0.7),
                                                              (200.0, 20)),
                                                  self.ui_manager,
-                                                 ui_container=self.get_container())
+                                                 container=self.get_container())
 
         loaded_test_image = pygame.image.load('data/images/splat.png').convert_alpha()
 
@@ -102,7 +102,7 @@ class EverythingWindow(UIWindow):
                                                self.rect.height * 0.3),
                                               loaded_test_image.get_rect().size),
                                   loaded_test_image, self.ui_manager,
-                                  ui_container=self.get_container())
+                                  container=self.get_container())
         self.is_selected = False
 
     def select(self):
@@ -237,7 +237,8 @@ class OptionsUIApp:
         self.test_text_entry = UITextEntryLine(pygame.Rect((self.options.resolution[0] / 2,
                                                             self.options.resolution[1] * 0.50),
                                                            (200.0, -1)),
-                                               self.ui_manager)
+                                               self.ui_manager,
+                                               object_id='#main_text_entry')
 
         current_resolution_string = str(self.options.resolution[0]) + 'x' + str(self.options.resolution[1])
         self.test_drop_down_menu = UIDropDownMenu(['640x480', '800x600', '1024x768'],
@@ -315,6 +316,11 @@ class OptionsUIApp:
                 self.running = False
 
             self.ui_manager.process_events(event)
+
+            if event.type == pygame.USEREVENT:
+                if event.user_type == 'ui_text_entry_finished':
+                    if event.ui_object_id == '#main_text_entry':
+                        print(event.text)
 
     def run(self):
         while self.running:
