@@ -75,6 +75,7 @@ class EverythingWindow(UIWindow):
                                                            (200.0, -1)),
                                                self.ui_manager,
                                                container=self.get_container())
+        self.test_text_entry.set_forbidden_characters('numbers')
 
         current_resolution_string = 'Item 1'
         self.test_drop_down_menu = UIDropDownMenu(['Item 1',
