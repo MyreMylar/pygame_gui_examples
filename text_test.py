@@ -15,11 +15,11 @@ background_surface = pygame.Surface(screen_size)
 background_surface.fill(pygame.Color("#000000"))
 clock = pygame.time.Clock()
 ui_manager = UIManager(screen_size, 'data/themes/theme_1.json')
-ui_manager.get_theme().get_font_dictionary().add_font_path("Montserrat",
-                                                           "data/fonts/Montserrat-Regular.ttf",
-                                                           "data/fonts/Montserrat-Bold.ttf",
-                                                           "data/fonts/Montserrat-Italic.ttf",
-                                                           "data/fonts/Montserrat-BoldItalic.ttf")
+ui_manager.add_font_paths("Montserrat",
+                          "data/fonts/Montserrat-Regular.ttf",
+                          "data/fonts/Montserrat-Bold.ttf",
+                          "data/fonts/Montserrat-Italic.ttf",
+                          "data/fonts/Montserrat-BoldItalic.ttf")
 
 load_time_1 = clock.tick()
 ui_manager.preload_fonts([{'name': 'Montserrat', 'html_size': 4.5, 'style': 'bold'},
