@@ -111,14 +111,17 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_f:
                 htm_text_block_2.set_active_effect('fade_out')
+        if event.type == pygame.USEREVENT:
+            if event.user_type == 'ui_text_box_link_clicked':
+                if event.ui_element is htm_text_block_2:
+                    if event.link_target == 'test':
+                        print('clicked test link')
+                else:
+                    print('clicked link in text block 1')
 
         ui_manager.process_events(event)
 
     ui_manager.update(time_delta)
-
-    clicked_links = htm_text_block_2.get_clicked_link_targets_and_reset()
-    if 'test' in clicked_links:
-        print("clicked test link")
 
     screen.blit(background_surface, (0, 0))
     ui_manager.draw_ui(screen)

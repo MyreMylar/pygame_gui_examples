@@ -156,7 +156,7 @@ class EverythingWindow(UIWindow):
             else:
                 self.grabbed_window = False
 
-            if self.close_window_button.check_pressed_and_reset():
+            if self.close_window_button.check_pressed():
                 self.kill()
 
         super().update(time_delta)
@@ -249,58 +249,43 @@ class OptionsUIApp:
                                                               (200.0, 20)),
                                                   self.ui_manager)
 
-    def check_links(self):
-        message_boxes = [sprite for sprite in self.ui_manager.ui_group.sprites()
-                         if 'message_window' in sprite.element_ids]
-        for message_window in message_boxes:
-            if hasattr(message_window, 'text_block'):
-                clicked_links = message_window.text_block.get_clicked_link_targets_and_reset()
-                if 'test' in clicked_links:
-                    print("clicked test link")
-                if 'actually_link' in clicked_links:
-                    print("clicked actually link")
-
-    def check_test_button_pressed(self):
-        if self.test_button.check_pressed_and_reset():
-            UIMessageWindow(pygame.Rect((random.randint(0, self.options.resolution[0]-300),
-                                         random.randint(0, self.options.resolution[1]-200)),
-                                        (300, 200)),
-                            'Test Message Window',
-                            '<font color=normal_text>'
-                            'This is a <a href="test">test</a> message to see if '
-                            'this box <a href=actually_link>actually</a> works.'
-                            ''
-                            'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
-                            'In hac a habitasse to platea dictumst.<br>'
-                            ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
-                            ' accumsan, lectus at'
-                            ' tincidunt to dictum, neque <font color=#879AF6>erat tristique blob</font>,'
-                            ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                            ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
-                            ' sollicitudin.</font>'
-                            '<br><br>'
-                            'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
-                            'In hac a habitasse to platea dictumst.<br>'
-                            ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
-                            ' accumsan, lectus at'
-                            ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
-                            ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                            ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
-                            ' sollicitudin.</font>'
-                            '<br><br>'
-                            'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
-                            'In hac a habitasse to platea dictumst.<br>'
-                            ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
-                            ' accumsan, lectus at'
-                            ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
-                            ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                            ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
-                            ' sollicitudin.</font>'
-                            '</font>',
-                            self.ui_manager)
-
-        if self.test_button_2.check_pressed_and_reset():
-            EverythingWindow(pygame.Rect((10, 10), (640, 480)), self.ui_manager)
+    def create_message_window(self):
+        UIMessageWindow(pygame.Rect((random.randint(0, self.options.resolution[0] - 300),
+                                     random.randint(0, self.options.resolution[1] - 200)),
+                                    (300, 200)),
+                        'Test Message Window',
+                        '<font color=normal_text>'
+                        'This is a <a href="test">test</a> message to see if '
+                        'this box <a href=actually_link>actually</a> works.'
+                        ''
+                        'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
+                        'In hac a habitasse to platea dictumst.<br>'
+                        ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
+                        ' accumsan, lectus at'
+                        ' tincidunt to dictum, neque <font color=#879AF6>erat tristique blob</font>,'
+                        ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
+                        ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
+                        ' sollicitudin.</font>'
+                        '<br><br>'
+                        'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
+                        'In hac a habitasse to platea dictumst.<br>'
+                        ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
+                        ' accumsan, lectus at'
+                        ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
+                        ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
+                        ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
+                        ' sollicitudin.</font>'
+                        '<br><br>'
+                        'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
+                        'In hac a habitasse to platea dictumst.<br>'
+                        ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
+                        ' accumsan, lectus at'
+                        ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
+                        ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
+                        ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
+                        ' sollicitudin.</font>'
+                        '</font>',
+                        self.ui_manager)
 
     def check_resolution_changed(self):
         resolution_string = self.test_drop_down_menu.selected_option.split('x')
@@ -323,6 +308,19 @@ class OptionsUIApp:
                     if event.ui_object_id == '#main_text_entry':
                         print(event.text)
 
+                if event.user_type == 'ui_text_box_link_clicked':
+                    if event.link_target == 'test':
+                        print("clicked test link")
+                    elif event.link_target == 'actually_link':
+                        print("clicked actually link")
+
+                if event.user_type == 'ui_button_pressed':
+                    if event.ui_element == self.test_button:
+                        self.create_message_window()
+
+                    if event.ui_element == self.test_button_2:
+                        EverythingWindow(pygame.Rect((10, 10), (640, 480)), self.ui_manager)
+
     def run(self):
         while self.running:
             time_delta = self.clock.tick(60)/1000.0
@@ -333,9 +331,6 @@ class OptionsUIApp:
             # respond to input
             self.ui_manager.update(time_delta)
             self.check_resolution_changed()
-            self.check_test_button_pressed()
-
-            self.check_links()
 
             # draw graphics
             self.window_surface.blit(self.background_surface, (0, 0))

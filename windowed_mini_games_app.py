@@ -90,7 +90,7 @@ class PongWindow(UIWindow):
             if not self.grabbed_window:
                 self.pong_game.update(time_delta)
 
-            if self.close_window_button.check_pressed_and_reset():
+            if self.close_window_button.check_pressed():
                 self.kill()
 
         super().update(time_delta)
