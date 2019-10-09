@@ -1,0 +1,44 @@
+{
+
+    "#home_button":
+    {
+        "images":
+        {
+            "normal_image": {
+                "path": "data/images/home_icon.png"
+            }
+        }
+    },
+
+    "label":
+    {
+         "colours":
+         {
+             "dark_bg": "#25292e"
+         }
+    },
+
+    "#menu_bar":
+    {
+         "colours":
+         {
+             "normal_bg": "#35393e",
+             "hovered_bg": "#55595e"
+         },
+
+        "misc":
+        {
+            "text_horiz_alignment": "left",
+            "text_horiz_alignment_padding": "10"
+        }
+    },
+
+    "#menu_bar_close_button":
+    {
+         "colours":
+         {
+             "normal_bg": "#35393e",
+             "hovered_bg": "#55595e"
+         }
+    }
+}
