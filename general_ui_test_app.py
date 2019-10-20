@@ -225,7 +225,8 @@ class OptionsUIApp:
                                                    self.options.resolution[1] * 0.90),
                                                   (100, 40)),
                                       'EVERYTHING',
-                                      self.ui_manager)
+                                      self.ui_manager,
+                                      object_id='#everything_button')
 
         self.test_slider = UIHorizontalSlider(pygame.Rect((self.options.resolution[0] / 2,
                                                            self.options.resolution[1] * 0.70),

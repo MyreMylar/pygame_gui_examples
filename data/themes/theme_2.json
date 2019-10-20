@@ -51,7 +51,9 @@
         {
             "text_horiz_alignment": "center",
             "text_vert_alignment": "center",
-            "tool_tip_delay": "1.0"
+            "tool_tip_delay": "1.0",
+            "border_width": "0",
+            "shadow_width": "0"
         }
     },
 
@@ -86,12 +88,18 @@
         "misc":
         {
             "text_horiz_alignment": "left",
-            "text_horiz_alignment_padding": "10"
+            "text_horiz_alignment_padding": "10",
+            "border_width": "0",
+            "shadow_width": "0"
         }
     },
 
     "#hover_me_button":
     {
+        "colours":
+        {
+            "border": "#ffa295"
+        },
         "images":
         {
             "normal_image": {
@@ -102,6 +110,24 @@
                 "path": "data/images/splat.png",
                 "sub_surface_rect": "32,0,32,32"
             }
+        },
+        "misc":
+        {
+            "border_width": "1",
+            "shadow_width": "1"
+        }
+    },
+
+    "#everything_button":
+    {
+        "colours":
+        {
+            "border": "#ffa295"
+        },
+        "misc":
+        {
+            "border_width": "1",
+            "shadow_width": "1"
         }
     },
 
