@@ -76,7 +76,8 @@ html_text_line = UITextBox(
     ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
     ' sollicitudin.</font></font>',
     pygame.Rect(10, 10, 500, 580),
-    manager=ui_manager)
+    manager=ui_manager,
+    object_id='#text_box_1')
 
 time_2 = clock.tick()
 

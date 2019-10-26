@@ -27,7 +27,7 @@ class EverythingWindow(UIWindow):
         shadow_padding = (2, 2)
         background_surface = pygame.Surface((self.rect.width - shadow_padding[0] * 2,
                                              self.rect.height - shadow_padding[1] * 2))
-        background_surface.fill(self.ui_manager.get_theme().get_colour(self.object_id, self.element_ids, 'dark_bg'))
+        background_surface.fill(self.ui_manager.get_theme().get_colour(self.object_ids, self.element_ids, 'dark_bg'))
         self.image = self.ui_manager.get_shadow(self.rect.size)
         self.image.blit(background_surface, shadow_padding)
 
@@ -41,13 +41,15 @@ class EverythingWindow(UIWindow):
                                                                       (20, 20)),
                                             text='╳',
                                             manager=ui_manager,
-                                            container=self.get_container()
+                                            container=self.get_container(),
+                                            parent_element=self
                                             )
         self.menu_bar = UIButton(relative_rect=pygame.Rect((0, 0),
                                                            (self.get_container().rect.width-20, 20)),
                                  text='Everything Container',
                                  manager=ui_manager,
                                  container=self.get_container(),
+                                 parent_element=self,
                                  object_id='#message_window_title_bar'
                                  )
         self.menu_bar.set_hold_range((100, 100))
@@ -61,20 +63,23 @@ class EverythingWindow(UIWindow):
                                               50.0,
                                               (0.0, 100.0),
                                               self.ui_manager,
-                                              container=self.get_container())
+                                              container=self.get_container(),
+                                              parent_element=self)
 
         self.slider_label = UILabel(pygame.Rect(((self.rect.width / 2) + 250,
                                                  self.rect.height * 0.70),
                                                 (24, 20)),
                                     str(int(self.test_slider.get_current_value())),
                                     self.ui_manager,
-                                    container=self.get_container())
+                                    container=self.get_container(),
+                                    parent_element=self)
 
         self.test_text_entry = UITextEntryLine(pygame.Rect((self.rect.width / 2,
                                                             self.rect.height * 0.50),
                                                            (200.0, -1)),
                                                self.ui_manager,
-                                               container=self.get_container())
+                                               container=self.get_container(),
+                                               parent_element=self)
         self.test_text_entry.set_forbidden_characters('numbers')
 
         current_resolution_string = 'Item 1'
@@ -89,13 +94,15 @@ class EverythingWindow(UIWindow):
                                                                self.rect.height * 0.3),
                                                               (200.0, 20)),
                                                   self.ui_manager,
-                                                  container=self.get_container())
+                                                  container=self.get_container(),
+                                                  parent_element=self)
 
         self.health_bar = UIScreenSpaceHealthBar(pygame.Rect((self.rect.width / 9,
                                                               self.rect.height * 0.7),
                                                              (200.0, 20)),
                                                  self.ui_manager,
-                                                 container=self.get_container())
+                                                 container=self.get_container(),
+                                                 parent_element=self)
 
         loaded_test_image = pygame.image.load('data/images/splat.png').convert_alpha()
 
@@ -103,7 +110,8 @@ class EverythingWindow(UIWindow):
                                                self.rect.height * 0.3),
                                               loaded_test_image.get_rect().size),
                                   loaded_test_image, self.ui_manager,
-                                  container=self.get_container())
+                                  container=self.get_container(),
+                                  parent_element=self)
         self.is_selected = False
 
     def select(self):

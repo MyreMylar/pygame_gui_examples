@@ -11,7 +11,7 @@ class PongWindow(UIWindow):
     def __init__(self, ui_manager):
         super().__init__(pygame.Rect((25, 25), (320, 240)), ui_manager, ['pong_window'])
 
-        self.bg_colour = self.ui_manager.get_theme().get_colour(self.object_id, self.element_ids, 'dark_bg')
+        self.bg_colour = self.ui_manager.get_theme().get_colour(self.object_ids, self.element_ids, 'dark_bg')
 
         # create shadow
         shadow_padding = (2, 2)
@@ -32,7 +32,7 @@ class PongWindow(UIWindow):
                                  text='Super Awesome Pong!',
                                  manager=ui_manager,
                                  container=self.get_container(),
-                                 element_ids=self.element_ids
+                                 parent_element=self
                                  )
         self.menu_bar.set_hold_range((100, 100))
 
@@ -45,7 +45,7 @@ class PongWindow(UIWindow):
                                             text='╳',
                                             manager=ui_manager,
                                             container=self.get_container(),
-                                            element_ids=self.element_ids
+                                            parent_element=self
                                             )
 
         game_surface_size = (self.get_container().rect.width - 4, self.get_container().rect.height - 24)
@@ -54,7 +54,7 @@ class PongWindow(UIWindow):
                                             pygame.Surface(game_surface_size).convert(),
                                             manager=ui_manager,
                                             container=self.get_container(),
-                                            element_ids=self.element_ids)
+                                            parent_element=self)
 
         self.pong_game = PongGame(game_surface_size)
 

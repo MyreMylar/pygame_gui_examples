@@ -1,6 +1,6 @@
 {
 
-    "#home_button":
+    "guiopedia_window.#home_button":
     {
         "images":
         {
@@ -10,7 +10,7 @@
         }
     },
 
-    "label":
+    "guiopedia_window.label":
     {
          "colours":
          {
@@ -18,7 +18,7 @@
          }
     },
 
-    "#menu_bar":
+    "guiopedia_window.#menu_bar":
     {
          "colours":
          {
@@ -33,7 +33,7 @@
         }
     },
 
-    "#menu_bar_close_button":
+    "guiopedia_window.#menu_bar_close_button":
     {
          "colours":
          {

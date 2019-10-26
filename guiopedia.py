@@ -11,7 +11,7 @@ class GUIopediaWindow(pygame_gui.core.UIWindow):
     def __init__(self, manager):
         super().__init__(pygame.Rect((200, 50), (400, 500)), manager, ['guiopedia_window'])
 
-        self.bg_colour = self.ui_manager.get_theme().get_colour(self.object_id, self.element_ids, 'normal_bg')
+        self.bg_colour = self.ui_manager.get_theme().get_colour(self.object_ids, self.element_ids, 'normal_bg')
         # create shadow
         shadow_padding = (2, 2)
         background_surface = pygame.Surface((self.rect.width - shadow_padding[0] * 2,
@@ -32,7 +32,7 @@ class GUIopediaWindow(pygame_gui.core.UIWindow):
                                                      text='GUIopedia!',
                                                      manager=manager,
                                                      container=self.get_container(),
-                                                     element_ids=self.element_ids,
+                                                     parent_element=self,
                                                      object_id='#menu_bar'
                                                      )
         self.menu_bar.set_hold_range((100, 100))
@@ -47,7 +47,7 @@ class GUIopediaWindow(pygame_gui.core.UIWindow):
             text='╳',
             manager=manager,
             container=self.get_container(),
-            element_ids=self.element_ids,
+            parent_element=self,
             object_id='#menu_bar_close_button'
         )
 
@@ -56,22 +56,23 @@ class GUIopediaWindow(pygame_gui.core.UIWindow):
         search_bar_y_start = self.window_border[1] + self.menu_bar.rect.height
         self.search_box = pygame_gui.elements.UITextEntryLine(pygame.Rect((150, search_bar_y_start),
                                                                           (240, 20)),
-                                                              manager=manager, container=self.get_container(),
-                                                              element_ids=self.element_ids)
+                                                              manager=manager,
+                                                              container=self.get_container(),
+                                                              parent_element=self)
 
         self.search_label = pygame_gui.elements.UILabel(pygame.Rect((90, search_bar_y_start),
                                                                     (56, self.search_box.rect.height)),
                                                         "Search:",
                                                         manager=manager,
                                                         container=self.get_container(),
-                                                        element_ids=self.element_ids)
+                                                        parent_element=self)
 
         self.home_button = pygame_gui.elements.UIButton(pygame.Rect((20, search_bar_y_start),
                                                                     (20, 20)),
                                                         '',
                                                         manager=manager,
                                                         container=self.get_container(),
-                                                        element_ids=self.element_ids,
+                                                        parent_element=self,
                                                         object_id='#home_button')
 
         self.remaining_window_size = (self.get_container().rect.width - (2 * self.window_border[0]),
@@ -103,7 +104,7 @@ class GUIopediaWindow(pygame_gui.core.UIWindow):
                                                                                   self.remaining_window_size),
                                                           manager=manager,
                                                           container=self.get_container(),
-                                                          element_ids=self.element_ids)
+                                                          parent_element=self)
 
     def process_event(self, event):
         if event.type == pygame.USEREVENT:
@@ -153,7 +154,7 @@ class GUIopediaWindow(pygame_gui.core.UIWindow):
                                                                                 self.remaining_window_size),
                                                               manager=self.ui_manager,
                                                               container=self.get_container(),
-                                                              element_ids=self.element_ids)
+                                                              parent_element=self)
 
     def create_search_results_page(self, results):
         results_text = '<font size=5>Search results</font>'
