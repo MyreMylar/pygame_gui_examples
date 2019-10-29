@@ -44,19 +44,6 @@
             "disabled_text": "#6d736f"
         }
     },
-
-    "button":
-    {
-        "misc":
-        {
-            "text_horiz_alignment": "center",
-            "text_vert_alignment": "center",
-            "tool_tip_delay": "1.0",
-            "border_width": "0",
-            "shadow_width": "0"
-        }
-    },
-
     "tool_tip":
     {
         "colours":
@@ -98,7 +85,7 @@
     {
         "colours":
         {
-            "border": "#ffa295"
+            "border": "#ffB2A5"
         },
         "images":
         {
@@ -110,11 +97,6 @@
                 "path": "data/images/splat.png",
                 "sub_surface_rect": "32,0,32,32"
             }
-        },
-        "misc":
-        {
-            "border_width": "1",
-            "shadow_width": "1"
         }
     },
 
@@ -122,12 +104,7 @@
     {
         "colours":
         {
-            "border": "#ffa295"
-        },
-        "misc":
-        {
-            "border_width": "1",
-            "shadow_width": "1"
+            "border": "#ffB2A5"
         }
     },
 
@@ -163,6 +140,4 @@
             "normal_text": "#FFFFFF"
         }
     }
-
-
 }

@@ -211,7 +211,7 @@ class OptionsUIApp:
         self.ui_manager.clear_and_reset()
 
         self.background_surface = pygame.Surface(self.options.resolution)
-        self.background_surface.fill(pygame.Color("#daaef9"))
+        self.background_surface.fill(self.ui_manager.get_theme().get_colour(None, None, 'dark_bg'))
 
         self.test_button = UIButton(pygame.Rect((self.options.resolution[0] / 2,
                                                  self.options.resolution[1] * 0.90),

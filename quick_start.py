@@ -6,11 +6,10 @@ pygame.init()
 
 pygame.display.set_caption('Quick Start')
 window_surface = pygame.display.set_mode((800, 600))
+manager = pygame_gui.UIManager((800, 600))
 
 background = pygame.Surface((800, 600))
-background.fill(pygame.Color('#000000'))
-
-manager = pygame_gui.UIManager((800, 600))
+background.fill(manager.get_theme().get_colour(None, None, 'dark_bg'))
 
 hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),
                                             text='Say Hello',
