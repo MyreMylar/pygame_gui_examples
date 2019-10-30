@@ -59,7 +59,7 @@ class EverythingWindow(UIWindow):
 
         self.test_slider = UIHorizontalSlider(pygame.Rect((self.rect.width / 2,
                                                            self.rect.height * 0.70),
-                                                          (240, 20)),
+                                                          (240, 25)),
                                               50.0,
                                               (0.0, 100.0),
                                               self.ui_manager,
@@ -68,7 +68,7 @@ class EverythingWindow(UIWindow):
 
         self.slider_label = UILabel(pygame.Rect(((self.rect.width / 2) + 250,
                                                  self.rect.height * 0.70),
-                                                (24, 20)),
+                                                (24, 25)),
                                     str(int(self.test_slider.get_current_value())),
                                     self.ui_manager,
                                     container=self.get_container(),
@@ -188,7 +188,7 @@ class OptionsUIApp:
 
         self.background_surface = None
 
-        self.ui_manager = UIManager(self.options.resolution, 'data/themes/theme_2.json')
+        self.ui_manager = UIManager(self.options.resolution)  # , 'data/themes/theme_2.json'
         self.ui_manager.preload_fonts([{'name': 'fira_code', 'point_size': 10, 'style': 'bold'},
                                        {'name': 'fira_code', 'point_size': 10, 'style': 'regular'},
                                        {'name': 'fira_code', 'point_size': 10, 'style': 'italic'},
@@ -238,7 +238,7 @@ class OptionsUIApp:
 
         self.test_slider = UIHorizontalSlider(pygame.Rect((self.options.resolution[0] / 2,
                                                            self.options.resolution[1] * 0.70),
-                                                          (240, 20)),
+                                                          (240, 25)),
                                               100.0,
                                               (0.0, 100.0),
                                               self.ui_manager,
@@ -255,7 +255,7 @@ class OptionsUIApp:
                                                   current_resolution_string,
                                                   pygame.Rect((self.options.resolution[0] / 2,
                                                                self.options.resolution[1] * 0.3),
-                                                              (200.0, 20)),
+                                                              (200.0, 25)),
                                                   self.ui_manager)
 
     def create_message_window(self):

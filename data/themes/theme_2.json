@@ -14,7 +14,7 @@
             "link_hover": "#2020FF",
             "link_selected": "#551A8B",
             "text_shadow": "#777777",
-            "border": "#DDDDDD",
+            "border": "#ffB2A5",
             "filled_bar": "#f4251b",
             "unfilled_bar": "#CCCCCC"
         }
@@ -28,22 +28,6 @@
         }
     },
 
-    "horizontal_slider":
-    {
-        "colours":
-        {
-            "normal_bg": "#25292e",
-            "hovered_bg": "#35393e",
-            "disabled_bg": "#25292e",
-            "selected_bg": "#25292e",
-            "active_bg": "#193784",
-            "dark_bg": "#15191e",
-            "normal_text": "#c5cbd8",
-            "hovered_text": "#FFFFFF",
-            "selected_text": "#FFFFFF",
-            "disabled_text": "#6d736f"
-        }
-    },
     "tool_tip":
     {
         "colours":
@@ -108,14 +92,6 @@
         }
     },
 
-    "#cool_slider":
-    {
-        "colours":
-        {
-            "dark_bg": "#A59999"
-        }
-    },
-
     "text_entry_line":
     {
          "misc":
@@ -138,6 +114,22 @@
         "colours":
         {
             "normal_text": "#FFFFFF"
+        }
+    },
+    "everything_window.horizontal_slider":
+    {
+        "misc":
+        {
+            "border_width": "1",
+            "shadow_width": "1"
+        }
+    },
+    "everything_window.horizontal_slider.#sliding_button":
+    {
+        "misc":
+        {
+            "border_width": "1",
+            "shadow_width": "1"
         }
     }
 }
