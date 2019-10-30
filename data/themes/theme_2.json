@@ -14,7 +14,10 @@
             "link_hover": "#2020FF",
             "link_selected": "#551A8B",
             "text_shadow": "#777777",
-            "border": "#ffB2A5",
+            "normal_border": "#ffB2A5",
+            "hovered_border": "#ffC2B5",
+            "disabled_border": "#Df9285",
+            "selected_border": "#ff00A1",
             "filled_bar": "#f4251b",
             "unfilled_bar": "#CCCCCC"
         }
@@ -69,7 +72,7 @@
     {
         "colours":
         {
-            "border": "#ffB2A5"
+            "normal_border": "#ffB2A5"
         },
         "images":
         {
@@ -88,7 +91,7 @@
     {
         "colours":
         {
-            "border": "#ffB2A5"
+            "normal_border": "#ffB2A5"
         }
     },
 
@@ -130,6 +133,13 @@
         {
             "border_width": "1",
             "shadow_width": "1"
+        }
+    },
+    "message_window":
+    {
+        "misc":
+        {
+            "shadow_width": "15"
         }
     }
 }

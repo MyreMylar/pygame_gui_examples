@@ -16,7 +16,7 @@
         "colours":
         {
             "dark_bg":"#EEEFEF",
-            "border": "#884422"
+            "normal_border": "#884422"
         },
 
         "misc":
