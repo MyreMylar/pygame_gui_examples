@@ -188,7 +188,7 @@ class OptionsUIApp:
 
         self.background_surface = None
 
-        self.ui_manager = UIManager(self.options.resolution)  # , 'data/themes/theme_2.json'
+        self.ui_manager = UIManager(self.options.resolution, 'data/themes/theme_2.json')  # , 'data/themes/theme_2.json'
         self.ui_manager.preload_fonts([{'name': 'fira_code', 'point_size': 10, 'style': 'bold'},
                                        {'name': 'fira_code', 'point_size': 10, 'style': 'regular'},
                                        {'name': 'fira_code', 'point_size': 10, 'style': 'italic'},
