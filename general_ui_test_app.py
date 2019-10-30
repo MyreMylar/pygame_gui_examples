@@ -261,7 +261,7 @@ class OptionsUIApp:
     def create_message_window(self):
         UIMessageWindow(pygame.Rect((random.randint(0, self.options.resolution[0] - 300),
                                      random.randint(0, self.options.resolution[1] - 200)),
-                                    (300, 200)),
+                                    (350, 250)),
                         'Test Message Window',
                         '<font color=normal_text>'
                         'This is a <a href="test">test</a> message to see if '
