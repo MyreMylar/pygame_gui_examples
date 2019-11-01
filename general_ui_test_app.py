@@ -25,11 +25,13 @@ class EverythingWindow(UIWindow):
 
         # create shadow
         shadow_padding = (2, 2)
-        background_surface = pygame.Surface((self.rect.width - shadow_padding[0] * 2,
-                                             self.rect.height - shadow_padding[1] * 2))
-        background_surface.fill(self.ui_manager.get_theme().get_colour(self.object_ids, self.element_ids, 'dark_bg'))
+
         self.image = self.ui_manager.get_shadow(self.rect.size)
-        self.image.blit(background_surface, shadow_padding)
+        self.image.fill(self.ui_manager.get_theme().get_colour(self.object_ids, self.element_ids, 'dark_bg'),
+                        pygame.Rect(shadow_padding,
+                                    (self.rect.width - shadow_padding[0] * 2,
+                                     self.rect.height - shadow_padding[1] * 2)
+                                    ))
 
         self.get_container().relative_rect.width = self.rect.width - shadow_padding[0] * 2
         self.get_container().relative_rect.height = self.rect.height - shadow_padding[1] * 2
