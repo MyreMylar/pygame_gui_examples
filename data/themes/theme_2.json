@@ -45,29 +45,6 @@
         }
     },
 
-    "#message_window_title_bar":
-    {
-        "font":
-        {
-            "name": "montserrat",
-            "size": "12",
-            "bold": "0",
-            "italic": "1",
-            "regular_path": "data/fonts/Montserrat-Regular.ttf",
-            "bold_path": "data/fonts/Montserrat-Bold.ttf",
-            "italic_path": "data/fonts/Montserrat-Italic.ttf",
-            "bold_italic_path": "data/fonts/Montserrat-BoldItalic.ttf"
-        },
-
-        "misc":
-        {
-            "text_horiz_alignment": "left",
-            "text_horiz_alignment_padding": "10",
-            "border_width": "0",
-            "shadow_width": "0"
-        }
-    },
-
     "#hover_me_button":
     {
         "colours":
@@ -133,6 +110,29 @@
         {
             "border_width": "1",
             "shadow_width": "1"
+        }
+    },
+    "everything_window.#message_window_title_bar":
+    {
+        "font":
+        {
+            "name": "montserrat",
+            "size": "12",
+            "bold": "0",
+            "italic": "1",
+            "regular_path": "data/fonts/Montserrat-Regular.ttf",
+            "bold_path": "data/fonts/Montserrat-Bold.ttf",
+            "italic_path": "data/fonts/Montserrat-Italic.ttf",
+            "bold_italic_path": "data/fonts/Montserrat-BoldItalic.ttf"
+        },
+
+        "misc":
+        {
+            "text_horiz_alignment": "left",
+            "text_vert_alignment": "center",
+            "text_horiz_alignment_padding": "10",
+            "border_width": "0",
+            "shadow_width": "0"
         }
     },
     "message_window":

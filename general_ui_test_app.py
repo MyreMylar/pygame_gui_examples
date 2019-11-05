@@ -218,7 +218,7 @@ class OptionsUIApp:
         self.test_button = UIButton(pygame.Rect((self.options.resolution[0] / 2,
                                                  self.options.resolution[1] * 0.90),
                                                 (100, 40)),
-                                    'Hover me!',
+                                    '',
                                     self.ui_manager,
                                     tool_tip_text="<font face=fira_code color=normal_text size=2>"
                                                   "<b><u>Test Tool Tip</u></b>"
@@ -327,6 +327,7 @@ class OptionsUIApp:
 
                 if event.user_type == 'ui_button_pressed':
                     if event.ui_element == self.test_button:
+                        self.test_button.set_text(random.choice(['', 'Hover me!', 'Click this.', 'A Button']))
                         self.create_message_window()
 
                     if event.ui_element == self.test_button_2:
