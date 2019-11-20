@@ -9,6 +9,7 @@ from pong.score import Score
 
 class PongGame:
     def __init__(self, size):
+        self.size = size
         self.background = pygame.Surface(size)  # make a background surface
         self.background = self.background.convert()
         self.background.fill((0, 0, 0))
@@ -17,8 +18,8 @@ class PongGame:
 
         self.score = Score(font)
 
-        self.walls = [Wall((5, 5), (307, 10)),
-                      Wall((5, 202), (307, 207))]
+        self.walls = [Wall((5, 5), (size[0] - 10, 10)),
+                      Wall((5, size[1] - 10), (size[0] - 10, size[1] - 5))]
 
         self.bats = []
 
@@ -30,10 +31,10 @@ class PongGame:
         control_scheme_2.up = K_UP
         control_scheme_2.down = K_DOWN
 
-        self.bats.append(Bat((5, 141), control_scheme_1))
-        self.bats.append(Bat((302, 141), control_scheme_2))
+        self.bats.append(Bat((5, int(size[1]/2)), control_scheme_1, self.size))
+        self.bats.append(Bat((size[0] - 10, int(size[1]/2)), control_scheme_2, self.size))
 
-        self.ball = Ball((156, 106))
+        self.ball = Ball((int(size[0]/2), int(size[1]/2)))
 
     def process_event(self, event):
         for bat in self.bats:
@@ -48,7 +49,7 @@ class PongGame:
         if self.ball.position[0] < 0:
             self.ball.reset()
             self.score.increase_player_2_score()
-        elif self.ball.position[0] > 312:
+        elif self.ball.position[0] > self.size[0]:
             self.ball.reset()
             self.score.increase_player_1_score()
 
@@ -62,4 +63,4 @@ class PongGame:
             bat.render(surface)
 
         self.ball.render(surface)
-        self.score.render(surface)
+        self.score.render(surface, self.size)

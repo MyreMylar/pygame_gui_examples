@@ -59,8 +59,8 @@ class EverythingWindow(UIWindow):
         self.grabbed_window = False
         self.starting_grab_difference = (0, 0)
 
-        self.test_slider = UIHorizontalSlider(pygame.Rect((self.rect.width / 2,
-                                                           self.rect.height * 0.70),
+        self.test_slider = UIHorizontalSlider(pygame.Rect((int(self.rect.width / 2),
+                                                           int(self.rect.height * 0.70)),
                                                           (240, 25)),
                                               50.0,
                                               (0.0, 100.0),
@@ -68,17 +68,17 @@ class EverythingWindow(UIWindow):
                                               container=self.get_container(),
                                               parent_element=self)
 
-        self.slider_label = UILabel(pygame.Rect(((self.rect.width / 2) + 250,
-                                                 self.rect.height * 0.70),
-                                                (24, 25)),
+        self.slider_label = UILabel(pygame.Rect((int(self.rect.width / 2) + 250,
+                                                 int(self.rect.height * 0.70)),
+                                                (27, 25)),
                                     str(int(self.test_slider.get_current_value())),
                                     self.ui_manager,
                                     container=self.get_container(),
                                     parent_element=self)
 
-        self.test_text_entry = UITextEntryLine(pygame.Rect((self.rect.width / 2,
-                                                            self.rect.height * 0.50),
-                                                           (200.0, -1)),
+        self.test_text_entry = UITextEntryLine(pygame.Rect((int(self.rect.width / 2),
+                                                            int(self.rect.height * 0.50)),
+                                                           (200, -1)),
                                                self.ui_manager,
                                                container=self.get_container(),
                                                parent_element=self)
@@ -92,24 +92,24 @@ class EverythingWindow(UIWindow):
                                                    'Item 5',
                                                    'Item 6'],
                                                   current_resolution_string,
-                                                  pygame.Rect((self.rect.width / 2,
-                                                               self.rect.height * 0.3),
-                                                              (200.0, 20)),
+                                                  pygame.Rect((int(self.rect.width / 2),
+                                                               int(self.rect.height * 0.3)),
+                                                              (200, 25)),
                                                   self.ui_manager,
                                                   container=self.get_container(),
                                                   parent_element=self)
 
-        self.health_bar = UIScreenSpaceHealthBar(pygame.Rect((self.rect.width / 9,
-                                                              self.rect.height * 0.7),
-                                                             (200.0, 20)),
+        self.health_bar = UIScreenSpaceHealthBar(pygame.Rect((int(self.rect.width / 9),
+                                                              int(self.rect.height * 0.7)),
+                                                             (200, 20)),
                                                  self.ui_manager,
                                                  container=self.get_container(),
                                                  parent_element=self)
 
         loaded_test_image = pygame.image.load('data/images/splat.png').convert_alpha()
 
-        self.test_image = UIImage(pygame.Rect((self.rect.width / 9,
-                                               self.rect.height * 0.3),
+        self.test_image = UIImage(pygame.Rect((int(self.rect.width / 9),
+                                               int(self.rect.height * 0.3)),
                                               loaded_test_image.get_rect().size),
                                   loaded_test_image, self.ui_manager,
                                   container=self.get_container(),
@@ -206,6 +206,8 @@ class OptionsUIApp:
         self.recreate_ui()
 
         self.clock = pygame.time.Clock()
+
+        self.button_response_timer = pygame.time.Clock()
         self.running = True
 
     def recreate_ui(self):
@@ -215,8 +217,8 @@ class OptionsUIApp:
         self.background_surface = pygame.Surface(self.options.resolution)
         self.background_surface.fill(self.ui_manager.get_theme().get_colour(None, None, 'dark_bg'))
 
-        self.test_button = UIButton(pygame.Rect((self.options.resolution[0] / 2,
-                                                 self.options.resolution[1] * 0.90),
+        self.test_button = UIButton(pygame.Rect((int(self.options.resolution[0] / 2),
+                                                 int(self.options.resolution[1] * 0.90)),
                                                 (100, 40)),
                                     '',
                                     self.ui_manager,
@@ -231,36 +233,37 @@ class OptionsUIApp:
                                                   "</font>",
                                     object_id='#hover_me_button')
 
-        self.test_button_2 = UIButton(pygame.Rect((self.options.resolution[0] / 3,
-                                                   self.options.resolution[1] * 0.90),
+        self.test_button_2 = UIButton(pygame.Rect((int(self.options.resolution[0] / 3),
+                                                   int(self.options.resolution[1] * 0.90)),
                                                   (100, 40)),
                                       'EVERYTHING',
                                       self.ui_manager,
                                       object_id='#everything_button')
 
-        self.test_slider = UIHorizontalSlider(pygame.Rect((self.options.resolution[0] / 2,
-                                                           self.options.resolution[1] * 0.70),
+        self.test_slider = UIHorizontalSlider(pygame.Rect((int(self.options.resolution[0] / 2),
+                                                           int(self.options.resolution[1] * 0.70)),
                                                           (240, 25)),
                                               100.0,
                                               (0.0, 100.0),
                                               self.ui_manager,
                                               object_id='#cool_slider')
 
-        self.test_text_entry = UITextEntryLine(pygame.Rect((self.options.resolution[0] / 2,
-                                                            self.options.resolution[1] * 0.50),
-                                                           (200.0, -1)),
+        self.test_text_entry = UITextEntryLine(pygame.Rect((int(self.options.resolution[0] / 2),
+                                                            int(self.options.resolution[1] * 0.50)),
+                                                           (200, -1)),
                                                self.ui_manager,
                                                object_id='#main_text_entry')
 
         current_resolution_string = str(self.options.resolution[0]) + 'x' + str(self.options.resolution[1])
         self.test_drop_down_menu = UIDropDownMenu(['640x480', '800x600', '1024x768'],
                                                   current_resolution_string,
-                                                  pygame.Rect((self.options.resolution[0] / 2,
-                                                               self.options.resolution[1] * 0.3),
-                                                              (200.0, 25)),
+                                                  pygame.Rect((int(self.options.resolution[0] / 2),
+                                                               int(self.options.resolution[1] * 0.3)),
+                                                              (200, 25)),
                                                   self.ui_manager)
 
     def create_message_window(self):
+        self.button_response_timer.tick()
         UIMessageWindow(pygame.Rect((random.randint(0, self.options.resolution[0] - 300),
                                      random.randint(0, self.options.resolution[1] - 200)),
                                     (350, 250)),
@@ -297,6 +300,10 @@ class OptionsUIApp:
                         ' sollicitudin.</font>'
                         '</font>',
                         self.ui_manager)
+        time_taken = self.button_response_timer.tick()/1000.0
+        # currently taking about 0.35 seconds down from 0.55 to create an elaborately themed message window.
+        # still feels a little slow but it's better than it was.
+        print("Time taken to create message window: " + str(time_taken))
 
     def check_resolution_changed(self):
         resolution_string = self.test_drop_down_menu.selected_option.split('x')
@@ -347,6 +354,8 @@ class OptionsUIApp:
             # draw graphics
             self.window_surface.blit(self.background_surface, (0, 0))
             self.ui_manager.draw_ui(self.window_surface)
+
+            #self.window_surface.blit(self.ui_manager.ui_theme.shape_cache.cache_surfaces[0], (0, 0))
 
             pygame.display.update()
 

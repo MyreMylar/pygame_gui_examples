@@ -9,11 +9,13 @@ class ControlScheme:
 
 
 class Bat:
-    def __init__(self, start_pos, control_scheme):
+    def __init__(self, start_pos, control_scheme, court_size):
         self.control_scheme = control_scheme
         self.move_up = False
         self.move_down = False
         self.move_speed = 450.0
+
+        self.court_size = court_size
 
         self.length = 30.0
         self.width = 5.0
@@ -48,8 +50,8 @@ class Bat:
         if self.move_down:
             self.position[1] += dt * self.move_speed
 
-            if self.position[1] > 172.0:
-                self.position[1] = 172.0
+            if self.position[1] > self.court_size[1] - self.length - 10:
+                self.position[1] = self.court_size[1] - self.length - 10
 
             self.rect.y = self.position[1]
 

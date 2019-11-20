@@ -41,7 +41,7 @@ print('Font load time taken:', load_time_2/1000.0, 'seconds.')
 
 time_1 = clock.tick()
 html_text_line = UITextBox(
-    '<font face=Montserrat color=#E0E2E4><font color=#E784A2 size=4.5><br><b><u>Lorem</u><br><br><br>'
+    '<font face=Montserrat color=regular_text><font color=#E784A2 size=4.5><br><b><u>Lorem</u><br><br><br>'
     'ipsum dolor sit amet</b></font>,'
     ' <b><a href="test">consectetur</a></b> adipiscing elit. in a flibb de dib do '
     'rub a la clob slip the perry tin fo glorp yip dorp'

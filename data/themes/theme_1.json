@@ -1,13 +1,37 @@
 {
     "text_box":
     {
+        "colours":
+        {
+            "link_text":"#F080E0,#8080E0,0",
+            "link_hover":"#FF8FEF",
+            "regular_text": "#D0D0D0,#FFFFFF,#D050FF,90"
+        },
         "misc":
         {
+            "shape": "rounded_rectangle",
+            "shape_corner_radius": "10",
             "border_width": "1",
             "padding": "10,10",
             "link_normal_underline": "0",
-            "link_hover_underline": "1"
+            "link_hover_underline": "0"
 
+        }
+    },
+    "text_box.vertical_scroll_bar":
+    {
+        "misc":
+        {
+            "shape": "rounded_rectangle",
+            "shape_corner_radius": "9"
+        }
+    },
+    "text_box.vertical_scroll_bar.button":
+    {
+        "misc":
+        {
+            "shape": "rounded_rectangle",
+            "shape_corner_radius": "7"
         }
     },
 

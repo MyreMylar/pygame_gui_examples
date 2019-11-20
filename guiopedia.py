@@ -118,7 +118,7 @@ class GUIopediaWindow(pygame_gui.core.UIWindow):
                     self.open_new_page('results')
 
             if event.user_type == 'ui_button_pressed':
-                if event.ui_element == self.home_button:
+                if event.ui_object_id == '#home_button':
                     self.open_new_page('index')
 
     def search_pages(self, search_string: str):

@@ -8,21 +8,25 @@ from pong.pong import PongGame
 
 
 class PongWindow(UIWindow):
-    def __init__(self, ui_manager):
-        super().__init__(pygame.Rect((25, 25), (320, 240)), ui_manager, ['pong_window'])
+    def __init__(self, position, ui_manager):
+        super().__init__(pygame.Rect(position, (320, 240)), ui_manager, ['pong_window'])
 
         self.bg_colour = self.ui_manager.get_theme().get_colour(self.object_ids, self.element_ids, 'dark_bg')
 
         # create shadow
-        shadow_padding = (2, 2)
+        shadow_width = 15
+        shadow_padding = (shadow_width, shadow_width)
         background_surface = pygame.Surface((self.rect.width - shadow_padding[0] * 2,
                                              self.rect.height - shadow_padding[1] * 2))
         background_surface.fill(self.bg_colour)
-        self.image = self.ui_manager.get_shadow(self.rect.size)
+
+        self.image = self.ui_manager.get_shadow(self.rect.size, shadow_width, corner_radius=shadow_width)
         self.image.blit(background_surface, shadow_padding)
 
         self.get_container().relative_rect.width = self.rect.width - shadow_padding[0] * 2
         self.get_container().relative_rect.height = self.rect.height - shadow_padding[1] * 2
+        self.get_container().rect.width = self.rect.width - shadow_padding[0] * 2
+        self.get_container().rect.height = self.rect.height - shadow_padding[1] * 2
         self.get_container().relative_rect.x = self.get_container().relative_rect.x + shadow_padding[0]
         self.get_container().relative_rect.y = self.get_container().relative_rect.y + shadow_padding[1]
         self.get_container().update_containing_rect_position()
@@ -32,7 +36,8 @@ class PongWindow(UIWindow):
                                  text='Super Awesome Pong!',
                                  manager=ui_manager,
                                  container=self.get_container(),
-                                 parent_element=self
+                                 parent_element=self,
+                                 object_id='#menu_bar'
                                  )
         self.menu_bar.set_hold_range((100, 100))
 
@@ -58,8 +63,19 @@ class PongWindow(UIWindow):
 
         self.pong_game = PongGame(game_surface_size)
 
+        self.is_active = False
+
     def process_event(self, event):
-        self.pong_game.process_event(event)
+        if event.type == pygame.USEREVENT:
+            if event.user_type == 'ui_button_pressed':
+                if event.ui_element == self.menu_bar:
+                    window_selected_event = pygame.event.Event(pygame.USEREVENT,
+                                                              {'user_type': 'pong_window_selected',
+                                                               'ui_element': self,
+                                                               'ui_object_id': self.object_ids[-1]})
+                    pygame.event.post(window_selected_event)
+        if self.is_active:
+            self.pong_game.process_event(event)
 
     def update(self, time_delta):
         if self.alive():
@@ -87,7 +103,7 @@ class PongWindow(UIWindow):
             else:
                 self.grabbed_window = False
 
-            if not self.grabbed_window:
+            if not self.grabbed_window and self.is_active:
                 self.pong_game.update(time_delta)
 
             if self.close_window_button.check_pressed():
@@ -110,7 +126,8 @@ class MiniGamesApp:
         self.clock = pygame.time.Clock()
         self.is_running = True
 
-        self.pong_window = PongWindow(self.ui_manager)
+        self.pong_window_1 = PongWindow((25, 25), self.ui_manager)
+        self.pong_window_2 = PongWindow((50, 50), self.ui_manager)
 
     def run(self):
         while self.is_running:
@@ -121,6 +138,14 @@ class MiniGamesApp:
                     self.is_running = False
 
                 self.ui_manager.process_events(event)
+
+                if event.type == pygame.USEREVENT:
+                    if event.user_type == 'pong_window_selected':
+                        event.ui_element.is_active = True
+                        if event.ui_element == self.pong_window_1:
+                            self.pong_window_2.is_active = False
+                        elif event.ui_element == self.pong_window_2:
+                            self.pong_window_1.is_active = False
 
             self.ui_manager.update(time_delta)
 

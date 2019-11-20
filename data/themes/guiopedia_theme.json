@@ -7,6 +7,10 @@
             "normal_image": {
                 "path": "data/images/home_icon.png"
             }
+        },
+        "misc":
+        {
+            "shape": "ellipse"
         }
     },
 
@@ -16,6 +20,15 @@
          {
              "dark_bg": "#4c5052"
          }
+    },
+
+    "guiopedia_window.text_entry_line":
+    {
+        "misc":
+        {
+            "shape": "rounded_rectangle",
+            "shape_corner_radius": "12"
+        }
     },
 
     "guiopedia_window.#menu_bar":

@@ -4,15 +4,16 @@ import pygame_gui
 
 pygame.init()
 
+
 pygame.display.set_caption('Quick Start')
 window_surface = pygame.display.set_mode((800, 600))
-manager = pygame_gui.UIManager((800, 600))
+manager = pygame_gui.UIManager((800, 600), 'data/themes/quick_theme.json')
 
 background = pygame.Surface((800, 600))
-background.fill(manager.get_theme().get_colour(None, None, 'dark_bg'))
+background.fill(manager.ui_theme.get_colour(None, None, 'dark_bg'))
 
-hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 275), (100, 50)),
-                                            text='Say Hello',
+hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 280), (150, 40)),
+                                            text='Hello',
                                             manager=manager)
 
 clock = pygame.time.Clock()
