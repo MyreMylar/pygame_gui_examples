@@ -9,15 +9,15 @@ import pygame_gui
 
 class GUIopediaWindow(pygame_gui.core.UIWindow):
     def __init__(self, manager):
-        super().__init__(pygame.Rect((200, 50), (400, 500)), manager, ['guiopedia_window'])
+        super().__init__(pygame.Rect((200, 50), (420, 520)), manager, ['guiopedia_window'])
 
         self.bg_colour = self.ui_manager.get_theme().get_colour(self.object_ids, self.element_ids, 'normal_bg')
         # create shadow
-        shadow_padding = (2, 2)
+        shadow_padding = (15, 15)
         background_surface = pygame.Surface((self.rect.width - shadow_padding[0] * 2,
                                              self.rect.height - shadow_padding[1] * 2))
         background_surface.fill(self.bg_colour)
-        self.image = self.ui_manager.get_shadow(self.rect.size)
+        self.image = self.ui_manager.get_shadow(self.rect.size, 15, corner_radius=15)
         self.image.blit(background_surface, shadow_padding)
 
         self.get_container().relative_rect.width = self.rect.width - shadow_padding[0] * 2
