@@ -17,6 +17,7 @@ Or:
 in the terminal.
 """
 
+
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller's 'onefile' mode """
     try:

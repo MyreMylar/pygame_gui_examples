@@ -3,6 +3,10 @@ from typing import Union
 import pygame
 import pygame_gui
 
+"""
+Testing the quality of doing cheaper gradients.
+"""
+
 
 class Gradient:
     def __init__(self, angle_direction: int, colour_1: pygame.Color,
