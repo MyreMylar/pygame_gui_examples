@@ -5,6 +5,47 @@ from pygame_gui.ui_manager import UIManager
 from pygame_gui.elements.ui_text_box import UITextBox
 
 
+def create_large_text_box():
+    return UITextBox(
+            '<font face=Montserrat color=regular_text><font color=#E784A2 size=4.5><br><b><u>Lorem</u><br><br><br>'
+            'ipsum dolor sit amet</b></font>,'
+            ' <b><a href="test">consectetur</a></b> adipiscing elit. in a flibb de dib do '
+            'rub a la clob slip the perry tin fo glorp yip dorp'
+            'skorp si pork flum de dum be dung, slob be robble glurp destination flum kin slum. Ram slim gordo, fem '
+            'tulip squirrel slippers save socks certainly.<br>'
+            'Vestibulum in <i>commodo me</i> tellus in nisi finibus a sodales.<br>Vestibulum'
+            '<font size=2>hendrerit mi <i>sed nulla</i> scelerisque</font>, posuere ullamcorper '
+            'sem pulvinar.'
+            'Nulla at pulvinar a odio, a dictum dolor.<br>Maecenas at <font size=6><b>tellus a'
+            'tortor. a<br>'
+            'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br>'
+            'In hac a habitasse to platea dictumst.<br>'
+            '<font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br>Morbi '
+            'accumsan, lectus at '
+            'tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>, '
+            'sed a tempus for <b>nunc</b> dolor in nibh.<br>'
+            'Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante '
+            'sollicitudin.</font></font>'
+            '<br><br>'
+            '<b>consectetur</b> adipiscing elit. in a<br>'
+            'Vestibulum in <i>commodo me</i> tellus in nisi finibus a sodales.<br>'
+            'Vestibulum <font size=2>hendrerit mi <i>sed nulla</i> scelerisque</font>, posuere ullamcorper '
+            'sem pulvinar. '
+            'Nulla at pulvinar a odio, a dictum dolor.<br>'
+            'Maecenas at <font size=6><b>tellus a tortor. a<br>'
+            'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br>'
+            'In hac a habitasse to platea dictumst.<br>'
+            '<font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br>Morbi '
+            'accumsan, lectus at'
+            'tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>, '
+            'sed a tempus for <b>nunc</b> dolor in nibh.<br>'
+            'Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante '
+            'sollicitudin.</font></font>',
+            pygame.Rect(10, 10, 500, 580),
+            manager=ui_manager,
+            object_id='#text_box_1')
+
+
 pygame.init()
 
 pygame.display.set_caption("Text test")
@@ -40,45 +81,7 @@ load_time_2 = clock.tick()
 print('Font load time taken:', load_time_2/1000.0, 'seconds.')
 
 time_1 = clock.tick()
-html_text_line = UITextBox(
-    '<font face=Montserrat color=regular_text><font color=#E784A2 size=4.5><br><b><u>Lorem</u><br><br><br>'
-    'ipsum dolor sit amet</b></font>,'
-    ' <b><a href="test">consectetur</a></b> adipiscing elit. in a flibb de dib do '
-    'rub a la clob slip the perry tin fo glorp yip dorp'
-    'skorp si pork flum de dum be dung, slob be robble glurp destination flum kin slum. Ram slim gordo, fem '
-    'tulip squirrel slippers save socks certainly.<br>'
-    'Vestibulum in <i>commodo me</i> tellus in nisi finibus a sodales.<br>Vestibulum'
-    '<font size=2>hendrerit mi <i>sed nulla</i> scelerisque</font>, posuere ullamcorper '
-    'sem pulvinar.'
-    'Nulla at pulvinar a odio, a dictum dolor.<br>Maecenas at <font size=6><b>tellus a'
-    'tortor. a<br>'
-    'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br>'
-    'In hac a habitasse to platea dictumst.<br>'
-    '<font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br>Morbi '
-    'accumsan, lectus at '
-    'tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>, '
-    'sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-    'Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante '
-    'sollicitudin.</font></font>'
-    '<br><br>'
-    '<b>consectetur</b> adipiscing elit. in a<br>'
-    'Vestibulum in <i>commodo me</i> tellus in nisi finibus a sodales.<br>'
-    'Vestibulum <font size=2>hendrerit mi <i>sed nulla</i> scelerisque</font>, posuere ullamcorper '
-    'sem pulvinar. '
-    'Nulla at pulvinar a odio, a dictum dolor.<br>'
-    'Maecenas at <font size=6><b>tellus a tortor. a<br>'
-    'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br>'
-    'In hac a habitasse to platea dictumst.<br>'
-    '<font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br>Morbi '
-    'accumsan, lectus at'
-    'tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>, '
-    'sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-    'Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante '
-    'sollicitudin.</font></font>',
-    pygame.Rect(10, 10, 500, 580),
-    manager=ui_manager,
-    object_id='#text_box_1')
-
+html_text_line = create_large_text_box()
 time_2 = clock.tick()
 
 
@@ -112,6 +115,11 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_f:
                 htm_text_block_2.set_active_effect('fade_out')
+            if event.key == pygame.K_k:
+                html_text_line.kill()
+            if event.key == pygame.K_b:
+                html_text_line = create_large_text_box()
+
         if event.type == pygame.USEREVENT:
             if event.user_type == 'ui_text_box_link_clicked':
                 if event.ui_element is htm_text_block_2:
