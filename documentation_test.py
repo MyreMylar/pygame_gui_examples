@@ -52,10 +52,13 @@ background.fill(pygame.Color('#fcfcfc'))
 #                                         visible_percentage=0.8,
 #                                         manager=manager)
 
-test_sprite = TestSprite()
-pygame_gui.elements.UIWorldSpaceHealthBar(relative_rect=pygame.Rect((350, 280), (150, 35)),
-                                          sprite_to_monitor=test_sprite,
-                                          manager=manager)
+# test_sprite = TestSprite()
+# pygame_gui.elements.UIWorldSpaceHealthBar(relative_rect=pygame.Rect((350, 280), (150, 35)),
+#                                           sprite_to_monitor=test_sprite,
+#                                           manager=manager)
+
+pygame_gui.windows.UIColourPickerDialog(rect=pygame.Rect(100, 100, 300, 250),
+                                        manager=manager)
 
 clock = pygame.time.Clock()
 is_running = True

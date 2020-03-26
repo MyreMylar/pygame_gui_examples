@@ -10,16 +10,6 @@
         }
     },
 
-    "button":
-    {
-        "misc":
-        {
-            "shape": "rounded_rectangle",
-            "border_width": "5",
-            "shadow_width": "8",
-            "shape_corner_radius": "8"
-        }
-    },
     "drop_down_menu":
     {
         "colours":
@@ -48,49 +38,7 @@
             "shape_corner_radius": "5"
         }
     },
-    "horizontal_slider":
-    {
-        "colours":
-        {
-            "dark_bg": "#A0A0A0"
-        },
-        "misc":
-        {
-            "shape": "rounded_rectangle",
-            "shape_corner_radius": "15",
-            "border_width": "5"
-        }
-    },
-    "horizontal_slider.button":
-    {
-        "misc":
-        {
-            "shape": "rounded_rectangle",
-            "border_width": "1",
-            "shadow_width": "0",
-            "shape_corner_radius": "9"
-        }
-    },
-    "label":
-    {
-        "font":
-        {
-            "name": "fira_code",
-            "size": "48"
-        },
-        "colours":
-        {
-            "dark_bg": "#D0d0d0",
-            "normal_text": "#F08080,#A05090,270",
-            "text_shadow": "#202020"
-        },
-        "misc":
-        {
-            "text_shadow": "1",
-            "text_shadow_size": "1",
-            "text_shadow_offset": "2,2"
-        }
-    },
+
     "screen_space_health_bar":
     {
         "colours":
@@ -123,13 +71,7 @@
             "border_width": "3"
         }
     },
-    "text_entry_line":
-    {
-         "misc":
-        {
-            "border_width": "2"
-        }
-    },
+
     "vertical_scroll_bar":
     {
         "colours":
@@ -168,6 +110,32 @@
             "shape": "rounded_rectangle",
             "shape_corner_radius": "15",
             "border_width": "3"
+        }
+    },
+    "panel":
+    {
+        "misc":
+        {
+            "border_width": "5",
+            "shadow_width": "8",
+            "shape_corner_radius": "8"
+        }
+    },
+
+    "selection_list":
+    {
+        "misc":
+        {
+            "border_width": "5",
+            "shadow_width": "2"
+        }
+    },
+
+    "window":
+    {
+        "misc":
+        {
+            "border_width": "1"
         }
     }
 }

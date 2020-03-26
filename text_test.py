@@ -5,6 +5,12 @@ from pygame_gui.ui_manager import UIManager
 from pygame_gui.elements.ui_text_box import UITextBox
 
 
+"""
+Font load time taken: 0.911 seconds.
+Time taken 1st window: 1.509 seconds.
+Time taken 2nd window: 0.181 seconds.
+"""
+
 def create_large_text_box():
     return UITextBox(
             '<font face=Montserrat color=regular_text><font color=#E784A2 size=4.5><br><b><u>Lorem</u><br><br><br>'

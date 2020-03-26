@@ -4,6 +4,8 @@ import pygame_gui
 # Rough pre-cache performance measure - Button creation time taken: 4.925 seconds. (54 x rounded rectangles)
 # Post cache performance measure - Button creation time taken: 0.131 seconds. (54 x rounded rectangles)
 
+# current = 0.05 seconds
+
 pygame.init()
 
 
@@ -24,9 +26,9 @@ for j in range(1, 10):
     for i in range(1, 7):
         position = (i * spacing + ((i - 1) * button_row_width), (j * spacing + ((j -1) * button_row_height)))
         pygame_gui.elements.UIButton(relative_rect=pygame.Rect(position, (button_row_width, button_row_height)),
-                                     text=str(i)+','+ str(j),
+                                     text=str(i)+',' + str(j),
                                      manager=manager,
-                                     object_id='#'+str(i)+str(j))
+                                     object_id='#'+str(i) +str(j))
 
 load_time_2 = clock.tick()
 print('Button creation time taken:', load_time_2/1000.0, 'seconds.')

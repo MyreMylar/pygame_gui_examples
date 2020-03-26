@@ -1,7 +1,7 @@
 import pygame
 import pygame_gui
 
-# Rough current performance measure - Button creation time taken: 4.392 seconds. (54 x rounded rectangles)
+# Rough current performance measure - Button creation time taken: 0.42 seconds. (54 x rounded rectangles)
 
 pygame.init()
 

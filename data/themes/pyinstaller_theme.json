@@ -1,0 +1,34 @@
+{
+    "button":
+    {
+        "misc":
+        {
+            "shape": "rounded_rectangle",
+            "shape_corner_radius": "10",
+            "border_width": "1",
+            "shadow_width": "2"
+        },
+        "images":
+        {
+            "normal_image": {
+                "path": "data/images/splat.png",
+                "sub_surface_rect": "0,0,32,32"
+            },
+            "hovered_image": {
+                "path": "data/images/splat.png",
+                "sub_surface_rect": "32,0,32,32"
+            }
+        },
+        "font":
+        {
+            "name": "montserrat",
+            "size": "12",
+            "bold": "1",
+            "italic": "0",
+            "regular_path": "data/fonts/Montserrat-Regular.ttf",
+            "bold_path": "data/fonts/Montserrat-Bold.ttf",
+            "italic_path": "data/fonts/Montserrat-Italic.ttf",
+            "bold_italic_path": "data/fonts/Montserrat-BoldItalic.ttf"
+        }
+    }
+}

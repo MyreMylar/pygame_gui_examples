@@ -1,6 +1,28 @@
 {
+    "#guiopedia_window":
+    {
+        "colours":
+         {
+             "dark_bg": "#4c5052"
+         },
+        "misc":
+        {
+            "title_bar_height": "28"
+        }
+    },
 
-    "guiopedia_window.#home_button":
+     "#guiopedia_window.text_box":
+    {
+        "colours":
+         {
+             "dark_bg": "#21282d"
+         },
+        "misc":
+        {
+            "title_bar_height": "28"
+        }
+    },
+    "#guiopedia_window.#home_button":
     {
         "images":
         {
@@ -14,7 +36,7 @@
         }
     },
 
-    "guiopedia_window.label":
+    "#guiopedia_window.label":
     {
          "colours":
          {
@@ -22,8 +44,12 @@
          }
     },
 
-    "guiopedia_window.text_entry_line":
+    "#guiopedia_window.text_entry_line":
     {
+        "colours":
+         {
+             "dark_bg": "#21282d"
+         },
         "misc":
         {
             "shape": "rounded_rectangle",
@@ -31,7 +57,7 @@
         }
     },
 
-    "guiopedia_window.#menu_bar":
+    "#guiopedia_window.#title_bar":
     {
          "colours":
          {
@@ -46,7 +72,7 @@
         }
     },
 
-    "guiopedia_window.#menu_bar_close_button":
+    "#guiopedia_window.#close_button":
     {
          "colours":
          {

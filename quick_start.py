@@ -16,7 +16,6 @@ hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 280)
                                             text='Hello',
                                             manager=manager)
 
-pygame.mouse.set_pos(20, 15)
 clock = pygame.time.Clock()
 is_running = True
 
@@ -26,7 +25,7 @@ while is_running:
         if event.type == pygame.QUIT:
             is_running = False
 
-        if (event.type == pygame.USEREVENT and event.user_type == 'ui_button_pressed' and
+        if (event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_BUTTON_PRESSED and
                 event.ui_element == hello_button):
             print('Hello World!')
 

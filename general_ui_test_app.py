@@ -1,63 +1,48 @@
-import pygame
 import random
 
-from pygame_gui.ui_manager import UIManager
+import pygame
+import pygame_gui
 
-from pygame_gui.core.ui_window import UIWindow
+from pygame_gui import UIManager
 
-from pygame_gui.windows.ui_message_window import UIMessageWindow
+from pygame_gui.elements import UIWindow
+from pygame_gui.elements import UIButton
+from pygame_gui.elements import UIHorizontalSlider
+from pygame_gui.elements import UITextEntryLine
+from pygame_gui.elements import UIDropDownMenu
+from pygame_gui.elements import UIScreenSpaceHealthBar
+from pygame_gui.elements import UILabel
+from pygame_gui.elements import UIImage
+from pygame_gui.elements import UIPanel
+from pygame_gui.elements import UISelectionList
 
-from pygame_gui.elements.ui_button import UIButton
-from pygame_gui.elements.ui_horizontal_slider import UIHorizontalSlider
-from pygame_gui.elements.ui_text_entry_line import UITextEntryLine
-from pygame_gui.elements.ui_drop_down_menu import UIDropDownMenu
-from pygame_gui.elements.ui_screen_space_health_bar import UIScreenSpaceHealthBar
-from pygame_gui.elements.ui_label import UILabel
-from pygame_gui.elements.ui_image import UIImage
+from pygame_gui.windows import UIMessageWindow
+
+
+class ScalingWindow(UIWindow):
+    def __init__(self, rect, ui_manager):
+        super().__init__(rect, ui_manager,
+                         window_display_title='Scale',
+                         object_id='#scaling_window',
+                         resizable=True)
+
+        loaded_test_image = pygame.image.load('data/images/splat.png').convert_alpha()
+        self.test_image = UIImage(pygame.Rect((10, 10), (self.get_container().rect.width - 20,
+                                                         self.get_container().rect.height - 20)),
+                                  loaded_test_image, self.ui_manager,
+                                  container=self,
+                                  anchors={'top': 'top', 'bottom': 'bottom',
+                                           'left': 'left', 'right': 'right'})
+
+        self.set_blocking(True)
 
 
 class EverythingWindow(UIWindow):
     def __init__(self, rect, ui_manager):
-
-        element_ids = ['everything_window']
-
-        super().__init__(rect, ui_manager, element_ids=element_ids)
-
-        # create shadow
-        shadow_padding = (2, 2)
-
-        self.image = self.ui_manager.get_shadow(self.rect.size)
-        self.image.fill(self.ui_manager.get_theme().get_colour(self.object_ids, self.element_ids, 'dark_bg'),
-                        pygame.Rect(shadow_padding,
-                                    (self.rect.width - shadow_padding[0] * 2,
-                                     self.rect.height - shadow_padding[1] * 2)
-                                    ))
-
-        self.get_container().relative_rect.width = self.rect.width - shadow_padding[0] * 2
-        self.get_container().relative_rect.height = self.rect.height - shadow_padding[1] * 2
-        self.get_container().relative_rect.x = self.get_container().relative_rect.x + shadow_padding[0]
-        self.get_container().relative_rect.y = self.get_container().relative_rect.y + shadow_padding[1]
-        self.get_container().update_containing_rect_position()
-
-        self.close_window_button = UIButton(relative_rect=pygame.Rect((self.get_container().rect.width-20, 0),
-                                                                      (20, 20)),
-                                            text='╳',
-                                            manager=ui_manager,
-                                            container=self.get_container(),
-                                            parent_element=self
-                                            )
-        self.menu_bar = UIButton(relative_rect=pygame.Rect((0, 0),
-                                                           (self.get_container().rect.width-20, 20)),
-                                 text='Everything Container',
-                                 manager=ui_manager,
-                                 container=self.get_container(),
-                                 parent_element=self,
-                                 object_id='#message_window_title_bar'
-                                 )
-        self.menu_bar.set_hold_range((100, 100))
-
-        self.grabbed_window = False
-        self.starting_grab_difference = (0, 0)
+        super().__init__(rect, ui_manager,
+                         window_display_title='Everything Container',
+                         object_id='#everything_window',
+                         resizable=True)
 
         self.test_slider = UIHorizontalSlider(pygame.Rect((int(self.rect.width / 2),
                                                            int(self.rect.height * 0.70)),
@@ -65,23 +50,20 @@ class EverythingWindow(UIWindow):
                                               50.0,
                                               (0.0, 100.0),
                                               self.ui_manager,
-                                              container=self.get_container(),
-                                              parent_element=self)
+                                              container=self)
 
         self.slider_label = UILabel(pygame.Rect((int(self.rect.width / 2) + 250,
                                                  int(self.rect.height * 0.70)),
                                                 (27, 25)),
                                     str(int(self.test_slider.get_current_value())),
                                     self.ui_manager,
-                                    container=self.get_container(),
-                                    parent_element=self)
+                                    container=self)
 
         self.test_text_entry = UITextEntryLine(pygame.Rect((int(self.rect.width / 2),
                                                             int(self.rect.height * 0.50)),
                                                            (200, -1)),
                                                self.ui_manager,
-                                               container=self.get_container(),
-                                               parent_element=self)
+                                               container=self)
         self.test_text_entry.set_forbidden_characters('numbers')
 
         current_resolution_string = 'Item 1'
@@ -90,21 +72,44 @@ class EverythingWindow(UIWindow):
                                                    'Item 3',
                                                    'Item 4',
                                                    'Item 5',
-                                                   'Item 6'],
+                                                   'Item 6',
+                                                   'Item 7',
+                                                   'Item 8',
+                                                   'Item 9',
+                                                   'Item 10',
+                                                   'Item 11',
+                                                   'Item 12',
+                                                   'Item 13',
+                                                   'Item 14',
+                                                   'Item 15',
+                                                   'Item 16',
+                                                   'Item 17',
+                                                   'Item 18',
+                                                   'Item 19',
+                                                   'Item 20',
+                                                   'Item 21',
+                                                   'Item 22',
+                                                   'Item 23',
+                                                   'Item 24',
+                                                   'Item 25',
+                                                   'Item 26',
+                                                   'Item 27',
+                                                   'Item 28',
+                                                   'Item 29',
+                                                   'Item 30'
+                                                   ],
                                                   current_resolution_string,
                                                   pygame.Rect((int(self.rect.width / 2),
                                                                int(self.rect.height * 0.3)),
                                                               (200, 25)),
                                                   self.ui_manager,
-                                                  container=self.get_container(),
-                                                  parent_element=self)
+                                                  container=self)
 
         self.health_bar = UIScreenSpaceHealthBar(pygame.Rect((int(self.rect.width / 9),
                                                               int(self.rect.height * 0.7)),
                                                              (200, 20)),
                                                  self.ui_manager,
-                                                 container=self.get_container(),
-                                                 parent_element=self)
+                                                 container=self)
 
         loaded_test_image = pygame.image.load('data/images/splat.png').convert_alpha()
 
@@ -112,64 +117,13 @@ class EverythingWindow(UIWindow):
                                                int(self.rect.height * 0.3)),
                                               loaded_test_image.get_rect().size),
                                   loaded_test_image, self.ui_manager,
-                                  container=self.get_container(),
-                                  parent_element=self)
-        self.is_selected = False
-
-    def select(self):
-        self.is_selected = True
-
-    def unselect(self):
-        self.is_selected = False
-
-    def process_event(self, event):
-        processed_event = False
-        if self.is_selected:
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_p:
-                    self.test_slider.set_current_value(50)
-
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1:
-                mouse_x, mouse_y = event.pos
-                if self.rect.collidepoint(mouse_x, mouse_y):
-                    processed_event = True
-                    self.window_stack.move_window_to_front(self)
-
-        return processed_event
+                                  container=self)
 
     def update(self, time_delta):
-        if self.alive():
-            if self.test_slider.has_moved_recently:
-                self.slider_label.set_text(str(int(self.test_slider.get_current_value())))
-
-            if self.menu_bar.held:
-                mouse_x, mouse_y = pygame.mouse.get_pos()
-                if not self.grabbed_window:
-                    self.window_stack.move_window_to_front(self)
-                    self.grabbed_window = True
-                    self.starting_grab_difference = (mouse_x - self.rect.x,
-                                                     mouse_y - self.rect.y)
-
-                current_grab_difference = (mouse_x - self.rect.x,
-                                           mouse_y - self.rect.y)
-
-                adjustment_required = (current_grab_difference[0] - self.starting_grab_difference[0],
-                                       current_grab_difference[1] - self.starting_grab_difference[1])
-
-                self.rect.x += adjustment_required[0]
-                self.rect.y += adjustment_required[1]
-                self.get_container().relative_rect.x += adjustment_required[0]
-                self.get_container().relative_rect.y += adjustment_required[1]
-                self.get_container().update_containing_rect_position()
-
-            else:
-                self.grabbed_window = False
-
-            if self.close_window_button.check_pressed():
-                self.kill()
-
         super().update(time_delta)
+
+        if self.alive() and self.test_slider.has_moved_recently:
+            self.slider_label.set_text(str(int(self.test_slider.get_current_value())))
 
 
 class Options:
@@ -200,15 +154,21 @@ class OptionsUIApp:
 
         self.test_button = None
         self.test_button_2 = None
+        self.test_button_3 = None
         self.test_slider = None
         self.test_text_entry = None
         self.test_drop_down_menu = None
+        self.panel = None
+
+        self.message_window = None
+
         self.recreate_ui()
 
         self.clock = pygame.time.Clock()
 
         self.button_response_timer = pygame.time.Clock()
         self.running = True
+        self.debug_mode = False
 
     def recreate_ui(self):
         self.ui_manager.set_window_resolution(self.options.resolution)
@@ -240,10 +200,17 @@ class OptionsUIApp:
                                       self.ui_manager,
                                       object_id='#everything_button')
 
+        self.test_button_3 = UIButton(pygame.Rect((int(self.options.resolution[0] / 6),
+                                                   int(self.options.resolution[1] * 0.90)),
+                                                  (100, 40)),
+                                      'Scaling?',
+                                      self.ui_manager,
+                                      object_id='#scaling_button')
+
         self.test_slider = UIHorizontalSlider(pygame.Rect((int(self.options.resolution[0] / 2),
                                                            int(self.options.resolution[1] * 0.70)),
                                                           (240, 25)),
-                                              100.0,
+                                              25.0,
                                               (0.0, 100.0),
                                               self.ui_manager,
                                               object_id='#cool_slider')
@@ -262,45 +229,80 @@ class OptionsUIApp:
                                                               (200, 25)),
                                                   self.ui_manager)
 
+        self.panel = UIPanel(pygame.Rect(50, 50, 200, 300),
+                             starting_layer_height=4,
+                             manager=self.ui_manager)
+
+        UIButton(pygame.Rect(10, 10, 174, 30), 'Panel Button',
+                 manager=self.ui_manager,
+                 container=self.panel)
+
+        UISelectionList(pygame.Rect(10, 50, 174, 200),
+                        item_list=['Item 1',
+                                   'Item 2',
+                                   'Item 3',
+                                   'Item 4',
+                                   'Item 5',
+                                   'Item 6',
+                                   'Item 7',
+                                   'Item 8',
+                                   'Item 9',
+                                   'Item 10',
+                                   'Item 11',
+                                   'Item 12',
+                                   'Item 13',
+                                   'Item 14',
+                                   'Item 15',
+                                   'Item 16',
+                                   'Item 17',
+                                   'Item 18',
+                                   'Item 19',
+                                   'Item 20'
+                                   ],
+                        manager=self.ui_manager,
+                        container=self.panel,
+                        allow_multi_select=True)
+
     def create_message_window(self):
         self.button_response_timer.tick()
-        UIMessageWindow(pygame.Rect((random.randint(0, self.options.resolution[0] - 300),
-                                     random.randint(0, self.options.resolution[1] - 200)),
-                                    (350, 250)),
-                        'Test Message Window',
-                        '<font color=normal_text>'
-                        'This is a <a href="test">test</a> message to see if '
-                        'this box <a href=actually_link>actually</a> works.'
-                        ''
-                        'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
-                        'In hac a habitasse to platea dictumst.<br>'
-                        ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
-                        ' accumsan, lectus at'
-                        ' tincidunt to dictum, neque <font color=#879AF6>erat tristique blob</font>,'
-                        ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                        ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
-                        ' sollicitudin.</font>'
-                        '<br><br>'
-                        'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
-                        'In hac a habitasse to platea dictumst.<br>'
-                        ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
-                        ' accumsan, lectus at'
-                        ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
-                        ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                        ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
-                        ' sollicitudin.</font>'
-                        '<br><br>'
-                        'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
-                        'In hac a habitasse to platea dictumst.<br>'
-                        ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
-                        ' accumsan, lectus at'
-                        ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
-                        ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                        ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
-                        ' sollicitudin.</font>'
-                        '</font>',
-                        self.ui_manager)
-        time_taken = self.button_response_timer.tick()/1000.0
+        self.message_window = UIMessageWindow(
+            rect=pygame.Rect((random.randint(0, self.options.resolution[0] - 300),
+                              random.randint(0, self.options.resolution[1] - 200)),
+                             (300, 250)),
+            window_title='Test Message Window',
+            html_message='<font color=normal_text>'
+                         'This is a <a href="test">test</a> message to see if '
+                         'this box <a href=actually_link>actually</a> works.'
+                         ''
+                         'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
+                         'In hac a habitasse to platea dictumst.<br>'
+                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
+                         ' accumsan, lectus at'
+                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique blob</font>,'
+                         ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
+                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
+                         ' sollicitudin.</font>'
+                         '<br><br>'
+                         'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
+                         'In hac a habitasse to platea dictumst.<br>'
+                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
+                         ' accumsan, lectus at'
+                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
+                         ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
+                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
+                         ' sollicitudin.</font>'
+                         '<br><br>'
+                         'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
+                         'In hac a habitasse to platea dictumst.<br>'
+                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
+                         ' accumsan, lectus at'
+                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
+                         ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
+                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
+                         ' sollicitudin.</font>'
+                         '</font>',
+            manager=self.ui_manager)
+        time_taken = self.button_response_timer.tick() / 1000.0
         # currently taking about 0.35 seconds down from 0.55 to create an elaborately themed message window.
         # still feels a little slow but it's better than it was.
         print("Time taken to create message window: " + str(time_taken))
@@ -321,41 +323,47 @@ class OptionsUIApp:
 
             self.ui_manager.process_events(event)
 
-            if event.type == pygame.USEREVENT:
-                if event.user_type == 'ui_text_entry_finished':
-                    if event.ui_object_id == '#main_text_entry':
-                        print(event.text)
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
+                self.debug_mode = False if self.debug_mode else True
+                self.ui_manager.set_visual_debug_mode(self.debug_mode)
 
-                if event.user_type == 'ui_text_box_link_clicked':
+            if event.type == pygame.USEREVENT:
+                if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED and event.ui_object_id == '#main_text_entry':
+                    print(event.text)
+
+                if event.user_type == pygame_gui.UI_TEXT_BOX_LINK_CLICKED:
                     if event.link_target == 'test':
                         print("clicked test link")
                     elif event.link_target == 'actually_link':
                         print("clicked actually link")
 
-                if event.user_type == 'ui_button_pressed':
+                if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                     if event.ui_element == self.test_button:
                         self.test_button.set_text(random.choice(['', 'Hover me!', 'Click this.', 'A Button']))
                         self.create_message_window()
 
+                    if event.ui_element == self.test_button_3:
+                        ScalingWindow(pygame.Rect((50, 50), (224, 224)), self.ui_manager)
                     if event.ui_element == self.test_button_2:
                         EverythingWindow(pygame.Rect((10, 10), (640, 480)), self.ui_manager)
 
+                if (event.user_type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED
+                        and event.ui_element == self.test_drop_down_menu):
+                    self.check_resolution_changed()
+
     def run(self):
         while self.running:
-            time_delta = self.clock.tick(60)/1000.0
+            time_delta = self.clock.tick(60) / 1000.0
 
             # check for input
             self.process_events()
 
             # respond to input
             self.ui_manager.update(time_delta)
-            self.check_resolution_changed()
 
             # draw graphics
             self.window_surface.blit(self.background_surface, (0, 0))
             self.ui_manager.draw_ui(self.window_surface)
-
-            #self.window_surface.blit(self.ui_manager.ui_theme.shape_cache.cache_surfaces[0], (0, 0))
 
             pygame.display.update()
 
