@@ -41,18 +41,24 @@ class ImageLoadApp:
                 if event.type == pygame.QUIT:
                     self.is_running = False
 
-                if (event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_BUTTON_PRESSED and
+                if (event.type == pygame.USEREVENT and
+                        event.user_type == pygame_gui.UI_BUTTON_PRESSED and
                         event.ui_element == self.load_button):
-                    self.file_dialog = UIFileDialog(pygame.Rect(160, 50, 440, 500), self.ui_manager,
-                                                    window_title='Load Image...', initial_file_path='data/images/')
+                    self.file_dialog = UIFileDialog(pygame.Rect(160, 50, 440, 500),
+                                                    self.ui_manager,
+                                                    window_title='Load Image...',
+                                                    initial_file_path='data/images/',
+                                                    allow_existing_files_only=True)
                     self.load_button.disable()
 
-                if event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_FILE_DIALOG_PATH_PICKED:
+                if (event.type == pygame.USEREVENT and
+                        event.user_type == pygame_gui.UI_FILE_DIALOG_PATH_PICKED):
                     if self.display_loaded_image is not None:
                         self.display_loaded_image.kill()
 
                     try:
-                        loaded_image = pygame.image.load(create_resource_path(event.text)).convert_alpha()
+                        image_path = create_resource_path(event.text)
+                        loaded_image = pygame.image.load(image_path).convert_alpha()
                         image_rect = loaded_image.get_rect()
                         aspect_ratio = image_rect.width / image_rect.height
                         need_to_scale = False
@@ -67,7 +73,8 @@ class ImageLoadApp:
                             need_to_scale = True
 
                         if need_to_scale:
-                            loaded_image = pygame.transform.smoothscale(loaded_image, image_rect.size)
+                            loaded_image = pygame.transform.smoothscale(loaded_image,
+                                                                        image_rect.size)
 
                         image_rect.center = (400, 300)
 
@@ -78,7 +85,8 @@ class ImageLoadApp:
                     except pygame.error:
                         pass
 
-                if (event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_WINDOW_CLOSE
+                if (event.type == pygame.USEREVENT and
+                        event.user_type == pygame_gui.UI_WINDOW_CLOSE
                         and event.ui_element == self.file_dialog):
                     self.load_button.enable()
                     self.file_dialog = None

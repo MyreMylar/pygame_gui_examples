@@ -17,7 +17,6 @@ class Gradient:
         self.colour_3 = colour_3
 
     def make_gradient(self, input_surface):
-        input_surface_size = input_surface.get_size()
         inverse_rotated_input = pygame.transform.rotate(input_surface, -self.angle_direction)
         gradient_size = inverse_rotated_input.get_rect().size
 
@@ -38,7 +37,8 @@ class Gradient:
         gradient_surf = pygame.Surface(gradient_size, flags=pygame.SRCALPHA)
 
         # scale the pixel surface to fill our new large, gradient surface
-        # pygame.transform.smoothscale Occasionally gives a 'Fatal Python error: PyEval_SaveThread: NULL tstate'
+        # pygame.transform.smoothscale Occasionally gives a
+        # 'Fatal Python error: PyEval_SaveThread: NULL tstate'
         # which is apparently a threading issue with the GIL.
 
         # pygame.transform.smoothscale(colour_pixels_surf, gradient_size, gradient_surf)
@@ -102,7 +102,10 @@ big_surf = test_gradient_1.make_gradient_2(big_surf)
 
 # gradient 2
 
-test_gradient_2 = Gradient(45, pygame.Color("#8070A0"), pygame.Color("#80E0CF"), pygame.Color("#F0E0EF"))
+test_gradient_2 = Gradient(45,
+                           pygame.Color("#8070A0"),
+                           pygame.Color("#80E0CF"),
+                           pygame.Color("#F0E0EF"))
 
 long_thin_surf_2 = pygame.Surface((300, 25))
 long_thin_surf_2 = test_gradient_2.make_gradient_2(long_thin_surf_2)

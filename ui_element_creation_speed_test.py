@@ -1,10 +1,18 @@
 import pygame
 import pygame_gui
 
-# Rough pre-cache performance measure - Button creation time taken: 4.925 seconds. (54 x rounded rectangles)
-# Post cache performance measure - Button creation time taken: 0.131 seconds. (54 x rounded rectangles)
 
-# current = 0.05 seconds
+# (182 x rounded rectangles)
+
+# in 0.42
+# --------
+# Button creation time taken: 0.092 seconds.
+# Clear and recreation time taken: 0.088 seconds.
+
+# in 0.55
+# --------
+# Button creation time taken: 0.21 seconds.
+# Clear and recreation time taken: 0.229 seconds.
 
 pygame.init()
 
@@ -19,19 +27,42 @@ background.fill(manager.get_theme().get_colour(None, None, 'dark_bg'))
 
 load_time_1 = clock.tick()
 
-button_row_width = 100
+test_container = pygame_gui.core.UIContainer(pygame.Rect(0, 0, 800, 600),
+                                             manager=manager)
+
+button_row_width = 50
 button_row_height = 40
-spacing = 20
-for j in range(1, 10):
-    for i in range(1, 7):
-        position = (i * spacing + ((i - 1) * button_row_width), (j * spacing + ((j -1) * button_row_height)))
-        pygame_gui.elements.UIButton(relative_rect=pygame.Rect(position, (button_row_width, button_row_height)),
+spacing = 10
+for j in range(1, 15):
+    for i in range(1, 14):
+        position = (i * spacing + ((i - 1) * button_row_width),
+                    (j * spacing + ((j - 1) * button_row_height)))
+        pygame_gui.elements.UIButton(relative_rect=pygame.Rect(position,
+                                                               (button_row_width,
+                                                                button_row_height)),
                                      text=str(i)+',' + str(j),
                                      manager=manager,
-                                     object_id='#'+str(i) +str(j))
-
+                                     container=test_container,
+                                     object_id='#'+str(i) + str(j))
 load_time_2 = clock.tick()
-print('Button creation time taken:', load_time_2/1000.0, 'seconds.')
+print('Button creation time taken:', load_time_2 / 1000.0, 'seconds.')
+test_container.clear()
+
+for j in range(1, 15):
+    for i in range(1, 14):
+        position = (i * spacing + ((i - 1) * button_row_width),
+                    (j * spacing + ((j - 1) * button_row_height)))
+        pygame_gui.elements.UIButton(relative_rect=pygame.Rect(position,
+                                                               (button_row_width,
+                                                                button_row_height)),
+                                     text=str(i)+',' + str(j),
+                                     manager=manager,
+                                     container=test_container,
+                                     object_id='#'+str(i) + str(j))
+
+load_time_3 = clock.tick()
+print('Clear and recreation time taken:', load_time_3 / 1000.0, 'seconds.')
+
 
 is_running = True
 

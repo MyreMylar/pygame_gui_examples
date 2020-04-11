@@ -6,6 +6,8 @@ from os.path import isfile, join, basename, splitext
 import pygame
 import pygame_gui
 
+from pygame_gui.elements import UITextBox
+
 
 class GUIopediaWindow(pygame_gui.elements.UIWindow):
     def __init__(self, manager):
@@ -16,31 +18,35 @@ class GUIopediaWindow(pygame_gui.elements.UIWindow):
 
         search_bar_top_margin = 2
         search_bar_bottom_margin = 2
-        self.search_box = pygame_gui.elements.UITextEntryLine(pygame.Rect((150, search_bar_top_margin),
+        self.search_box = pygame_gui.elements.UITextEntryLine(pygame.Rect((150,
+                                                                           search_bar_top_margin),
                                                                           (240, 20)),
                                                               manager=manager,
-                                                              container=self.get_container(),
+                                                              container=self,
                                                               parent_element=self)
 
-        self.search_label = pygame_gui.elements.UILabel(pygame.Rect((90, search_bar_top_margin),
-                                                                    (56, self.search_box.rect.height)),
+        self.search_label = pygame_gui.elements.UILabel(pygame.Rect((90,
+                                                                     search_bar_top_margin),
+                                                                    (56,
+                                                                     self.search_box.rect.height)),
                                                         "Search:",
                                                         manager=manager,
-                                                        container=self.get_container(),
+                                                        container=self,
                                                         parent_element=self)
 
         self.home_button = pygame_gui.elements.UIButton(pygame.Rect((20, search_bar_top_margin),
                                                                     (29, 29)),
                                                         '',
                                                         manager=manager,
-                                                        container=self.get_container(),
+                                                        container=self,
                                                         parent_element=self,
                                                         object_id='#home_button')
 
-        self.remaining_window_size = (self.get_container().relative_rect.width,
-                                      self.get_container().relative_rect.height - (self.search_box.rect.height +
-                                                                                   search_bar_top_margin +
-                                                                                   search_bar_bottom_margin))
+        self.remaining_window_size = (self.get_container().get_size()[0],
+                                      (self.get_container().get_size()[1] -
+                                       (self.search_box.rect.height +
+                                        search_bar_top_margin +
+                                        search_bar_bottom_margin)))
 
         self.pages = {}
         page_path = 'data/guiopedia/'
@@ -51,8 +57,10 @@ class GUIopediaWindow(pygame_gui.elements.UIWindow):
                 file_data = ""
                 for line in page_file:
                     line = line.rstrip(linesep).lstrip()
-                    # kind of hacky way to add back spaces at the end of new lines that are removed by the pyCharm HTML
-                    # editor. perhaps our HTML parser needs to handle this case (turning new lines into spaces
+                    # kind of hacky way to add back spaces at the end of new lines that
+                    # are removed by the pyCharm HTML
+                    # editor. perhaps our HTML parser needs to handle this case
+                    # (turning new lines into spaces
                     # but removing spaces at the start of rendered lines?)
                     if len(line) > 0:
                         if line[-1] != '>':
@@ -64,11 +72,12 @@ class GUIopediaWindow(pygame_gui.elements.UIWindow):
         self.page_y_start_pos = (self.search_box.rect.height +
                                  search_bar_top_margin +
                                  search_bar_bottom_margin)
-        self.page_display = pygame_gui.elements.UITextBox(index_page, pygame.Rect((0, self.page_y_start_pos),
-                                                                                  self.remaining_window_size),
-                                                          manager=manager,
-                                                          container=self.get_container(),
-                                                          parent_element=self)
+        self.page_display = UITextBox(index_page,
+                                      pygame.Rect((0, self.page_y_start_pos),
+                                                  self.remaining_window_size),
+                                      manager=manager,
+                                      container=self,
+                                      parent_element=self)
 
     def process_event(self, event):
         handled = super().process_event(event)
@@ -78,13 +87,15 @@ class GUIopediaWindow(pygame_gui.elements.UIWindow):
             self.open_new_page(event.link_target)
             handled = True
 
-        if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED and event.ui_element == self.search_box:
+        if (event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED and
+                event.ui_element == self.search_box):
             results = self.search_pages(event.text)
             self.create_search_results_page(results)
             self.open_new_page('results')
             handled = True
 
-        if event.user_type == pygame_gui.UI_BUTTON_PRESSED and event.ui_object_id == '#guiopedia_window.#home_button':
+        if (event.user_type == pygame_gui.UI_BUTTON_PRESSED and
+                event.ui_object_id == '#guiopedia_window.#home_button'):
             self.open_new_page('index')
             handled = True
 
@@ -117,12 +128,13 @@ class GUIopediaWindow(pygame_gui.elements.UIWindow):
         if page_link in self.pages:
             text = self.pages[page_link]
 
-            self.page_display = pygame_gui.elements.UITextBox(text, pygame.Rect((0,
-                                                                                 self.page_y_start_pos),
-                                                                                self.remaining_window_size),
-                                                              manager=self.ui_manager,
-                                                              container=self.get_container(),
-                                                              parent_element=self)
+            self.page_display = UITextBox(text,
+                                          pygame.Rect((0,
+                                                       self.page_y_start_pos),
+                                                      self.remaining_window_size),
+                                          manager=self.ui_manager,
+                                          container=self,
+                                          parent_element=self)
 
     def create_search_results_page(self, results):
         results_text = '<font size=5>Search results</font>'
@@ -167,7 +179,9 @@ class GUIopediaApp:
                 if event.type == pygame.QUIT:
                     self.is_running = False
 
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_F1 and not self.guiopedia_window.alive():
+                if (event.type == pygame.KEYDOWN and
+                        event.key == pygame.K_F1 and
+                        not self.guiopedia_window.alive()):
                     self.guiopedia_window = GUIopediaWindow(manager=self.manager)
 
                 self.manager.process_events(event)

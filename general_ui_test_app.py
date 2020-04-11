@@ -27,8 +27,8 @@ class ScalingWindow(UIWindow):
                          resizable=True)
 
         loaded_test_image = pygame.image.load('data/images/splat.png').convert_alpha()
-        self.test_image = UIImage(pygame.Rect((10, 10), (self.get_container().rect.width - 20,
-                                                         self.get_container().rect.height - 20)),
+        self.test_image = UIImage(pygame.Rect((10, 10), (self.get_container().get_size()[0] - 20,
+                                                         self.get_container().get_size()[1] - 20)),
                                   loaded_test_image, self.ui_manager,
                                   container=self,
                                   anchors={'top': 'top', 'bottom': 'bottom',
@@ -138,13 +138,14 @@ class OptionsUIApp:
         pygame.display.set_caption("Options UI")
         self.options = Options()
         if self.options.fullscreen:
-            self.window_surface = pygame.display.set_mode(self.options.resolution, pygame.FULLSCREEN)
+            self.window_surface = pygame.display.set_mode(self.options.resolution,
+                                                          pygame.FULLSCREEN)
         else:
             self.window_surface = pygame.display.set_mode(self.options.resolution)
 
         self.background_surface = None
 
-        self.ui_manager = UIManager(self.options.resolution, 'data/themes/theme_2.json')  # , 'data/themes/theme_2.json'
+        self.ui_manager = UIManager(self.options.resolution, 'data/themes/theme_2.json')
         self.ui_manager.preload_fonts([{'name': 'fira_code', 'point_size': 10, 'style': 'bold'},
                                        {'name': 'fira_code', 'point_size': 10, 'style': 'regular'},
                                        {'name': 'fira_code', 'point_size': 10, 'style': 'italic'},
@@ -157,7 +158,7 @@ class OptionsUIApp:
         self.test_button_3 = None
         self.test_slider = None
         self.test_text_entry = None
-        self.test_drop_down_menu = None
+        self.test_drop_down = None
         self.panel = None
 
         self.message_window = None
@@ -221,13 +222,15 @@ class OptionsUIApp:
                                                self.ui_manager,
                                                object_id='#main_text_entry')
 
-        current_resolution_string = str(self.options.resolution[0]) + 'x' + str(self.options.resolution[1])
-        self.test_drop_down_menu = UIDropDownMenu(['640x480', '800x600', '1024x768'],
-                                                  current_resolution_string,
-                                                  pygame.Rect((int(self.options.resolution[0] / 2),
-                                                               int(self.options.resolution[1] * 0.3)),
-                                                              (200, 25)),
-                                                  self.ui_manager)
+        current_resolution_string = (str(self.options.resolution[0]) +
+                                     'x' +
+                                     str(self.options.resolution[1]))
+        self.test_drop_down = UIDropDownMenu(['640x480', '800x600', '1024x768'],
+                                             current_resolution_string,
+                                             pygame.Rect((int(self.options.resolution[0] / 2),
+                                                          int(self.options.resolution[1] * 0.3)),
+                                                         (200, 25)),
+                                             self.ui_manager)
 
         self.panel = UIPanel(pygame.Rect(50, 50, 200, 300),
                              starting_layer_height=4,
@@ -276,42 +279,53 @@ class OptionsUIApp:
                          ''
                          'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
                          'In hac a habitasse to platea dictumst.<br>'
-                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
+                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec '
+                         'porttitor.<br> Morbi'
                          ' accumsan, lectus at'
-                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique blob</font>,'
+                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique'
+                         ' blob</font>,'
                          ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
+                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet '
+                         'on pharetra a ante'
                          ' sollicitudin.</font>'
                          '<br><br>'
                          'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
                          'In hac a habitasse to platea dictumst.<br>'
-                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
+                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec '
+                         'porttitor.<br> Morbi'
                          ' accumsan, lectus at'
-                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
+                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique '
+                         'erat</font>,'
                          ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
+                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet '
+                         'on pharetra a ante'
                          ' sollicitudin.</font>'
                          '<br><br>'
                          'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
                          'In hac a habitasse to platea dictumst.<br>'
-                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec porttitor.<br> Morbi'
+                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec '
+                         'porttitor.<br> Morbi'
                          ' accumsan, lectus at'
-                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique erat</font>,'
+                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique '
+                         'erat</font>,'
                          ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet on pharetra a ante'
+                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, '
+                         'sit amet on pharetra a ante'
                          ' sollicitudin.</font>'
                          '</font>',
             manager=self.ui_manager)
         time_taken = self.button_response_timer.tick() / 1000.0
-        # currently taking about 0.35 seconds down from 0.55 to create an elaborately themed message window.
+        # currently taking about 0.35 seconds down from 0.55 to create
+        # an elaborately themed message window.
         # still feels a little slow but it's better than it was.
         print("Time taken to create message window: " + str(time_taken))
 
     def check_resolution_changed(self):
-        resolution_string = self.test_drop_down_menu.selected_option.split('x')
+        resolution_string = self.test_drop_down.selected_option.split('x')
         resolution_width = int(resolution_string[0])
         resolution_height = int(resolution_string[1])
-        if resolution_width != self.options.resolution[0] or resolution_height != self.options.resolution[1]:
+        if (resolution_width != self.options.resolution[0] or
+                resolution_height != self.options.resolution[1]):
             self.options.resolution = (resolution_width, resolution_height)
             self.window_surface = pygame.display.set_mode(self.options.resolution)
             self.recreate_ui()
@@ -328,7 +342,8 @@ class OptionsUIApp:
                 self.ui_manager.set_visual_debug_mode(self.debug_mode)
 
             if event.type == pygame.USEREVENT:
-                if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED and event.ui_object_id == '#main_text_entry':
+                if (event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED and
+                        event.ui_object_id == '#main_text_entry'):
                     print(event.text)
 
                 if event.user_type == pygame_gui.UI_TEXT_BOX_LINK_CLICKED:
@@ -339,7 +354,9 @@ class OptionsUIApp:
 
                 if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                     if event.ui_element == self.test_button:
-                        self.test_button.set_text(random.choice(['', 'Hover me!', 'Click this.', 'A Button']))
+                        self.test_button.set_text(random.choice(['', 'Hover me!',
+                                                                 'Click this.',
+                                                                 'A Button']))
                         self.create_message_window()
 
                     if event.ui_element == self.test_button_3:
@@ -348,7 +365,7 @@ class OptionsUIApp:
                         EverythingWindow(pygame.Rect((10, 10), (640, 480)), self.ui_manager)
 
                 if (event.user_type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED
-                        and event.ui_element == self.test_drop_down_menu):
+                        and event.ui_element == self.test_drop_down):
                     self.check_resolution_changed()
 
     def run(self):

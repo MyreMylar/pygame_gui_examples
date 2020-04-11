@@ -7,7 +7,7 @@ import pygame_gui
 GOLDEN_RATIO = (math.sqrt(5) - 1) / 2
 
 
-def add_random_rectangle_to_cache(added_surfaces):
+def add_random_rectangle_to_cache(added_surfaces_list):
     width = random.randint(20, 200)
     height = random.randint(20, 200)
     surface = pygame.Surface((width, height))
@@ -16,7 +16,7 @@ def add_random_rectangle_to_cache(added_surfaces):
     color.a = 128
     surface.fill(color)
 
-    added_surfaces.append(str(color.hsla))
+    added_surfaces_list.append(str(color.hsla))
     manager.ui_theme.shape_cache.add_surface_to_cache(surface, str(color.hsla))
 
 
@@ -65,8 +65,10 @@ while is_running:
     window_surface.blit(background, (0, 0))
     manager.draw_ui(window_surface)
 
-    window_surface.blit(manager.ui_theme.shape_cache.cache_surfaces[current_surf]['surface'], (0, 0))
-    for rectangle in manager.ui_theme.shape_cache.cache_surfaces[current_surf]['free_space_rectangles']:
+    cache_surface = manager.ui_theme.shape_cache.cache_surfaces[current_surf]
+    window_surface.blit(cache_surface['surface'],
+                        (0, 0))
+    for rectangle in cache_surface['free_space_rectangles']:
         pygame.draw.rect(window_surface, pygame.Color('#A00000'), rectangle, 2)
 
     pygame.display.update()

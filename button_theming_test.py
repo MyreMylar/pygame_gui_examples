@@ -1,7 +1,8 @@
 import pygame
 import pygame_gui
 
-# Rough current performance measure - Button creation time taken: 0.42 seconds. (54 x rounded rectangles)
+# Rough current performance measure - Button creation time taken: 0.42 seconds.
+# (54 x rounded rectangles)
 
 pygame.init()
 
@@ -21,8 +22,11 @@ button_row_height = 40
 spacing = 20
 for j in range(1, 10):
     for i in range(1, 7):
-        position = (i * spacing + ((i - 1) * button_row_width), (j * spacing + ((j - 1) * button_row_height)))
-        pygame_gui.elements.UIButton(relative_rect=pygame.Rect(position, (button_row_width, button_row_height)),
+        position = (i * spacing + ((i - 1) * button_row_width),
+                    (j * spacing + ((j - 1) * button_row_height)))
+        pygame_gui.elements.UIButton(relative_rect=pygame.Rect(position,
+                                                               (button_row_width,
+                                                                button_row_height)),
                                      text=str(i) + ',' + str(j),
                                      manager=manager,
                                      object_id='#' + str(i) + ',' + str(j))
