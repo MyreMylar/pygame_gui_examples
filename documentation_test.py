@@ -57,7 +57,7 @@ background.fill(pygame.Color('#fcfcfc'))
 #                                           sprite_to_monitor=test_sprite,
 #                                           manager=manager)
 
-pygame_gui.windows.UIColourPickerDialog(rect=pygame.Rect(100, 100, 300, 250),
+pygame_gui.windows.UIColourPickerDialog(rect=pygame.Rect(100, 100, 390, 390),
                                         manager=manager)
 
 clock = pygame.time.Clock()

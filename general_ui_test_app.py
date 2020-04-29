@@ -3,7 +3,7 @@ import random
 import pygame
 import pygame_gui
 
-from pygame_gui import UIManager
+from pygame_gui import UIManager, PackageResource
 
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements import UIButton
@@ -145,7 +145,9 @@ class OptionsUIApp:
 
         self.background_surface = None
 
-        self.ui_manager = UIManager(self.options.resolution, 'data/themes/theme_2.json')
+        self.ui_manager = UIManager(self.options.resolution,
+                                    PackageResource(package='data.themes',
+                                                    resource='theme_2.json'))
         self.ui_manager.preload_fonts([{'name': 'fira_code', 'point_size': 10, 'style': 'bold'},
                                        {'name': 'fira_code', 'point_size': 10, 'style': 'regular'},
                                        {'name': 'fira_code', 'point_size': 10, 'style': 'italic'},
@@ -176,7 +178,7 @@ class OptionsUIApp:
         self.ui_manager.clear_and_reset()
 
         self.background_surface = pygame.Surface(self.options.resolution)
-        self.background_surface.fill(self.ui_manager.get_theme().get_colour(None, None, 'dark_bg'))
+        self.background_surface.fill(self.ui_manager.get_theme().get_colour('dark_bg'))
 
         self.test_button = UIButton(pygame.Rect((int(self.options.resolution[0] / 2),
                                                  int(self.options.resolution[1] * 0.90)),

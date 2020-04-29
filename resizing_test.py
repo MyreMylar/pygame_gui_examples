@@ -18,7 +18,7 @@ window_surface = pygame.display.set_mode((800, 600))
 manager = pygame_gui.UIManager((800, 600), 'data/themes/quick_theme.json')
 
 background = pygame.Surface((800, 600))
-background.fill(manager.ui_theme.get_colour(None, None, 'dark_bg'))
+background.fill(manager.ui_theme.get_colour('dark_bg'))
 
 hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 280), (150, 40)),
                                             text='Hello',

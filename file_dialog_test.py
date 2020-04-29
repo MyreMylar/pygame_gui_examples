@@ -15,7 +15,7 @@ class ImageLoadApp:
         self.ui_manager = pygame_gui.UIManager((800, 600), 'data/themes/image_load_app_theme.json')
 
         self.background = pygame.Surface((800, 600))
-        self.background.fill(self.ui_manager.ui_theme.get_colour(None, None, 'dark_bg'))
+        self.background.fill(self.ui_manager.ui_theme.get_colour('dark_bg'))
 
         self.load_button = UIButton(relative_rect=pygame.Rect(-180, -60, 150, 30),
                                     text='Load Image',

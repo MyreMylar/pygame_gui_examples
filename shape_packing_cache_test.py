@@ -32,7 +32,7 @@ window_surface = pygame.display.set_mode((1024, 1024))
 manager = pygame_gui.UIManager((1024, 1024), 'data/themes/quick_theme.json')
 
 background = pygame.Surface((1024, 1024))
-background.fill(manager.get_theme().get_colour(None, None, 'dark_bg'))
+background.fill(manager.get_theme().get_colour('dark_bg'))
 
 clock = pygame.time.Clock()
 is_running = True

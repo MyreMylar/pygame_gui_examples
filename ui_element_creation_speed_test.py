@@ -14,6 +14,11 @@ import pygame_gui
 # Button creation time taken: 0.21 seconds.
 # Clear and recreation time taken: 0.229 seconds.
 
+# in 0.56
+# --------
+# Button creation time taken: 0.078 seconds.
+# Clear and recreation time taken: 0.079 seconds.
+
 pygame.init()
 
 
@@ -23,7 +28,7 @@ manager = pygame_gui.UIManager((800, 600), 'data/themes/quick_theme.json')
 clock = pygame.time.Clock()
 
 background = pygame.Surface((800, 600))
-background.fill(manager.get_theme().get_colour(None, None, 'dark_bg'))
+background.fill(manager.get_theme().get_colour('dark_bg'))
 
 load_time_1 = clock.tick()
 

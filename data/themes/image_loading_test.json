@@ -1,0 +1,171 @@
+{
+    "button":
+    {
+        "misc":
+        {
+            "shape": "rectangle",
+            "border_width": "1",
+            "shadow_width": "2"
+        }
+    },
+    "#1":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_1.jpg"
+            }
+        }
+    },
+    "#2":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_2.jpg"
+            }
+        }
+    },
+    "#3":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_3.jpg"
+            }
+        }
+    },
+    "#4":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_4.jpg"
+            }
+        }
+    },
+    "#5":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_5.jpg"
+            }
+        }
+    },
+    "#6":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_6.jpg"
+            }
+        }
+    },
+    "#7":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_7.jpg"
+            }
+        }
+    },
+    "#8":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_8.jpg"
+            }
+        }
+    },
+    "#9":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_9.jpg"
+            }
+        }
+    },
+    "#10":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_10.jpg"
+            }
+        }
+    },
+    "#11":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_11.jpg"
+            }
+        }
+    },
+    "#12":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_12.jpg"
+            }
+        }
+    },
+    "#13":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_13.jpg"
+            }
+        }
+    },
+    "#14":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_14.jpg"
+            }
+        }
+    },
+    "#15":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_15.jpg"
+            }
+        }
+    },
+    "#16":
+    {
+        "images":
+        {
+            "normal_image": {
+                "package": "data.images.space",
+                "resource": "space_16.jpg"
+            }
+        }
+    }
+}

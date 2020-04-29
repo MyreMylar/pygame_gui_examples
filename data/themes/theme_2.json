@@ -43,10 +43,10 @@
             "size": "12",
             "bold": "1",
             "italic": "0",
-            "regular_path": "data/fonts/Montserrat-Regular.ttf",
-            "bold_path": "data/fonts/Montserrat-Bold.ttf",
-            "italic_path": "data/fonts/Montserrat-Italic.ttf",
-            "bold_italic_path": "data/fonts/Montserrat-BoldItalic.ttf"
+            "regular_resource": { "package": "data.fonts", "resource": "Montserrat-Regular.ttf"},
+            "bold_resource": { "package": "data.fonts", "resource": "Montserrat-Bold.ttf"},
+            "italic_resource": { "package": "data.fonts", "resource": "Montserrat-Italic.ttf"},
+            "bold_italic_resource": { "package": "data.fonts", "resource": "Montserrat-BoldItalic.ttf"}
         }
     },
 
@@ -55,11 +55,13 @@
         "images":
         {
             "normal_image": {
-                "path": "data/images/splat.png",
+                "package": "data.images",
+                "resource": "splat.png",
                 "sub_surface_rect": "0,0,32,32"
             },
             "hovered_image": {
-                "path": "data/images/splat.png",
+                "package": "data.images",
+                "resource": "splat.png",
                 "sub_surface_rect": "32,0,32,32"
             }
         }
@@ -323,10 +325,10 @@
             "size": "12",
             "bold": "0",
             "italic": "1",
-            "regular_path": "data/fonts/Montserrat-Regular.ttf",
-            "bold_path": "data/fonts/Montserrat-Bold.ttf",
-            "italic_path": "data/fonts/Montserrat-Italic.ttf",
-            "bold_italic_path": "data/fonts/Montserrat-BoldItalic.ttf"
+            "regular_resource": { "package": "data.fonts", "resource": "Montserrat-Regular.ttf"},
+            "bold_resource": { "package": "data.fonts", "resource": "Montserrat-Bold.ttf"},
+            "italic_resource": { "package": "data.fonts", "resource": "Montserrat-Italic.ttf"},
+            "bold_italic_resource": { "package": "data.fonts", "resource": "Montserrat-BoldItalic.ttf"}
         }
     },
     "#everything_window.label":
@@ -363,7 +365,8 @@
         {
             "background_image":
             {
-                "path": "data/images/splat.png",
+                "package": "data.images",
+                "resource": "splat.png",
                 "sub_surface_rect": "0,0,32,32"
             }
         }

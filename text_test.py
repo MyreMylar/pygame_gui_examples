@@ -3,7 +3,7 @@ import pygame
 
 from pygame_gui.ui_manager import UIManager
 from pygame_gui.elements.ui_text_box import UITextBox
-
+from pygame_gui.core import IncrementalThreadedResourceLoader
 
 """
 Font load time taken: 0.911 seconds.
@@ -66,8 +66,10 @@ screen = pygame.display.set_mode(screen_size)  # FULLSCREEN
 
 background_surface = pygame.Surface(screen_size)
 background_surface.fill(pygame.Color("#000000"))
+
+loader = IncrementalThreadedResourceLoader()
 clock = pygame.time.Clock()
-ui_manager = UIManager(screen_size, 'data/themes/theme_1.json')
+ui_manager = UIManager(screen_size, 'data/themes/theme_1.json', resource_loader=loader)
 ui_manager.add_font_paths("Montserrat",
                           "data/fonts/Montserrat-Regular.ttf",
                           "data/fonts/Montserrat-Bold.ttf",
@@ -89,6 +91,10 @@ ui_manager.preload_fonts([{'name': 'Montserrat', 'html_size': 4.5, 'style': 'bol
                           {'name': 'fira_code', 'html_size': 2, 'style': 'bold'},
                           {'name': 'fira_code', 'html_size': 2, 'style': 'bold_italic'}
                           ])
+loader.start()
+finished_loading = False
+while not finished_loading:
+    finished_loading, progress = loader.update()
 load_time_2 = clock.tick()
 print('Font load time taken:', load_time_2/1000.0, 'seconds.')
 
