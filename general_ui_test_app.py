@@ -1,5 +1,5 @@
 import random
-
+import os
 import pygame
 import pygame_gui
 
@@ -19,6 +19,9 @@ from pygame_gui.elements import UISelectionList
 from pygame_gui.windows import UIMessageWindow
 
 
+import pygame
+
+
 class ScalingWindow(UIWindow):
     def __init__(self, rect, ui_manager):
         super().__init__(rect, ui_manager,
@@ -26,7 +29,7 @@ class ScalingWindow(UIWindow):
                          object_id='#scaling_window',
                          resizable=True)
 
-        loaded_test_image = pygame.image.load('data/images/splat.png').convert_alpha()
+        loaded_test_image = pygame.image.load('data/images/splat.bmp').convert_alpha()
         self.test_image = UIImage(pygame.Rect((10, 10), (self.get_container().get_size()[0] - 20,
                                                          self.get_container().get_size()[1] - 20)),
                                   loaded_test_image, self.ui_manager,
@@ -111,7 +114,7 @@ class EverythingWindow(UIWindow):
                                                  self.ui_manager,
                                                  container=self)
 
-        loaded_test_image = pygame.image.load('data/images/splat.png').convert_alpha()
+        loaded_test_image = pygame.image.load('data/images/splat.bmp').convert_alpha()
 
         self.test_image = UIImage(pygame.Rect((int(self.rect.width / 9),
                                                int(self.rect.height * 0.3)),
@@ -162,6 +165,8 @@ class OptionsUIApp:
         self.test_text_entry = None
         self.test_drop_down = None
         self.panel = None
+        self.fps_counter = None
+        self.frame_timer = None
 
         self.message_window = None
 
@@ -268,6 +273,22 @@ class OptionsUIApp:
                         container=self.panel,
                         allow_multi_select=True)
 
+        self.fps_counter = UILabel(pygame.Rect(self.options.resolution[0] - 250,
+                                               20,
+                                               230,
+                                               44),
+                                   "FPS: 0",
+                                   self.ui_manager,
+                                   object_id='#fps_counter')
+
+        self.frame_timer = UILabel(pygame.Rect(self.options.resolution[0] - 250,
+                                               64,
+                                               230,
+                                               24),
+                                   "Frame time: 0",
+                                   self.ui_manager,
+                                   object_id='#frame_timer')
+
     def create_message_window(self):
         self.button_response_timer.tick()
         self.message_window = UIMessageWindow(
@@ -372,13 +393,16 @@ class OptionsUIApp:
 
     def run(self):
         while self.running:
-            time_delta = self.clock.tick(60) / 1000.0
+            time_delta = self.clock.tick() / 1000.0
 
             # check for input
             self.process_events()
 
             # respond to input
             self.ui_manager.update(time_delta)
+
+            self.fps_counter.set_text(f'FPS: {1.0/max(time_delta, 0.0000001):.2f}')
+            self.frame_timer.set_text(f'frame_time: {time_delta:.4f}')
 
             # draw graphics
             self.window_surface.blit(self.background_surface, (0, 0))
