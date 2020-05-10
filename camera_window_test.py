@@ -61,9 +61,9 @@ background.fill(manager.ui_theme.get_colour('dark_bg'))
 
 
 cam_window_pos = [10, 10]
-num_connected_cameras = 2
+num_connected_cameras = 1
 cam_names = ["My Camera", "My Boss"]
-for cam_id in range(0, 2):
+for cam_id in range(0, num_connected_cameras):
     cam_window_rect = pygame.Rect(0, 0, 400, 300)
     cam_window_rect.topleft = cam_window_pos
     CameraWindow(cam_window_rect, cam_id, cam_names[cam_id], manager)
