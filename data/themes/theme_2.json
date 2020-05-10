@@ -56,12 +56,12 @@
         {
             "normal_image": {
                 "package": "data.images",
-                "resource": "splat.png",
+                "resource": "splat.bmp",
                 "sub_surface_rect": "0,0,32,32"
             },
             "hovered_image": {
                 "package": "data.images",
-                "resource": "splat.png",
+                "resource": "splat.bmp",
                 "sub_surface_rect": "32,0,32,32"
             }
         }
@@ -182,7 +182,7 @@
         "misc":
         {
             "shape": "rounded_rectangle",
-            "shape_corner_radius": "11",
+            "shape_corner_radius": "10",
             "border_width": "1",
             "padding": "2,2"
         }
@@ -366,9 +366,33 @@
             "background_image":
             {
                 "package": "data.images",
-                "resource": "splat.png",
+                "resource": "splat.bmp",
                 "sub_surface_rect": "0,0,32,32"
             }
+        }
+    },
+    "#fps_counter":
+    {
+        "colours":
+        {
+            "normal_text": "#FFFFFF"
+        },
+        "font":
+        {
+            "name": "fira_code",
+            "size": "32"
+        }
+    },
+    "#frame_timer":
+    {
+        "colours":
+        {
+            "normal_text": "#FFFFFF"
+        },
+        "font":
+        {
+            "name": "fira_code",
+            "size": "14"
         }
     }
 }
