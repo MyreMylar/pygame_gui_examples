@@ -401,7 +401,7 @@ class OptionsUIApp:
             # respond to input
             self.ui_manager.update(time_delta)
 
-            self.fps_counter.set_text(f'FPS: {1.0/max(time_delta, 0.0000001):.2f}')
+            self.fps_counter.set_text(f'FPS: {min(999.0, 1.0/max(time_delta, 0.0000001)):.2f}')
             self.frame_timer.set_text(f'frame_time: {time_delta:.4f}')
 
             # draw graphics

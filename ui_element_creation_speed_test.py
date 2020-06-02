@@ -19,6 +19,11 @@ import pygame_gui
 # Button creation time taken: 0.078 seconds.
 # Clear and recreation time taken: 0.079 seconds.
 
+# in 0.57
+# --------
+# Button creation time taken: 0.095 seconds.
+# Clear and recreation time taken: 0.092 seconds.
+
 pygame.init()
 
 
