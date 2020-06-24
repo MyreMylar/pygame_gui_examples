@@ -2,6 +2,7 @@ import random
 import os
 import pygame
 import pygame_gui
+from collections import deque
 
 from pygame_gui import UIManager, PackageResource
 
@@ -164,19 +165,26 @@ class OptionsUIApp:
         self.test_slider = None
         self.test_text_entry = None
         self.test_drop_down = None
+        self.test_drop_down_2 = None
         self.panel = None
         self.fps_counter = None
         self.frame_timer = None
+        self.disable_toggle = None
+        self.hide_toggle = None
 
         self.message_window = None
 
         self.recreate_ui()
 
         self.clock = pygame.time.Clock()
+        self.time_delta_stack = deque([])
 
         self.button_response_timer = pygame.time.Clock()
         self.running = True
         self.debug_mode = False
+
+        self.all_enabled = True
+        self.all_shown = True
 
     def recreate_ui(self):
         self.ui_manager.set_window_resolution(self.options.resolution)
@@ -239,6 +247,14 @@ class OptionsUIApp:
                                                          (200, 25)),
                                              self.ui_manager)
 
+        self.test_drop_down_2 = UIDropDownMenu(['Another', 'drop down', 'menu',
+                                                'testing', 'overlaps'],
+                                               'Another',
+                                               pygame.Rect((int(self.options.resolution[0] / 2),
+                                                            int(self.options.resolution[1] * 0.25)),
+                                                           (200, 25)),
+                                               self.ui_manager)
+
         self.panel = UIPanel(pygame.Rect(50, 50, 200, 300),
                              starting_layer_height=4,
                              manager=self.ui_manager)
@@ -288,6 +304,20 @@ class OptionsUIApp:
                                    "Frame time: 0",
                                    self.ui_manager,
                                    object_id='#frame_timer')
+
+        self.disable_toggle = UIButton(pygame.Rect((int(self.options.resolution[0] * 0.85),
+                                                    int(self.options.resolution[1] * 0.90)),
+                                                   (100, 30)),
+                                       'Disable',
+                                       self.ui_manager,
+                                       object_id='#disable_button')
+
+        self.hide_toggle = UIButton(pygame.Rect((int(self.options.resolution[0] * 0.85),
+                                                 int(self.options.resolution[1] * 0.85)),
+                                                (100, 30)),
+                                    'Hide',
+                                    self.ui_manager,
+                                    object_id='#hide_button')
 
     def create_message_window(self):
         self.button_response_timer.tick()
@@ -364,6 +394,9 @@ class OptionsUIApp:
                 self.debug_mode = False if self.debug_mode else True
                 self.ui_manager.set_visual_debug_mode(self.debug_mode)
 
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_f:
+                print("self.ui_manager.focused_set:", self.ui_manager.focused_set)
+
             if event.type == pygame.USEREVENT:
                 if (event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED and
                         event.ui_object_id == '#main_text_entry'):
@@ -387,6 +420,28 @@ class OptionsUIApp:
                     if event.ui_element == self.test_button_2:
                         EverythingWindow(pygame.Rect((10, 10), (640, 480)), self.ui_manager)
 
+                    if event.ui_element == self.disable_toggle:
+                        if self.all_enabled:
+                            self.disable_toggle.set_text('Enable')
+                            self.all_enabled = False
+                            self.ui_manager.root_container.disable()
+                            self.disable_toggle.enable()
+                        else:
+                            self.disable_toggle.set_text('Disable')
+                            self.all_enabled = True
+                            self.ui_manager.root_container.enable()
+
+                    if event.ui_element == self.hide_toggle:
+                        if self.all_shown:
+                            self.hide_toggle.set_text('Show')
+                            self.all_shown = False
+                            self.ui_manager.root_container.hide()
+                            self.hide_toggle.show()
+                        else:
+                            self.hide_toggle.set_text('Hide')
+                            self.all_shown = True
+                            self.ui_manager.root_container.show()
+
                 if (event.user_type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED
                         and event.ui_element == self.test_drop_down):
                     self.check_resolution_changed()
@@ -394,6 +449,9 @@ class OptionsUIApp:
     def run(self):
         while self.running:
             time_delta = self.clock.tick() / 1000.0
+            self.time_delta_stack.append(time_delta)
+            if len(self.time_delta_stack) > 2000:
+                self.time_delta_stack.popleft()
 
             # check for input
             self.process_events()
@@ -401,8 +459,10 @@ class OptionsUIApp:
             # respond to input
             self.ui_manager.update(time_delta)
 
-            self.fps_counter.set_text(f'FPS: {min(999.0, 1.0/max(time_delta, 0.0000001)):.2f}')
-            self.frame_timer.set_text(f'frame_time: {time_delta:.4f}')
+            if len(self.time_delta_stack) == 2000:
+                self.fps_counter.set_text(
+                    f'FPS: {min(999.0, 1.0/max(sum(self.time_delta_stack)/2000.0, 0.0000001)):.2f}')
+                self.frame_timer.set_text(f'frame_time: {sum(self.time_delta_stack)/2000.0:.4f}')
 
             # draw graphics
             self.window_surface.blit(self.background_surface, (0, 0))

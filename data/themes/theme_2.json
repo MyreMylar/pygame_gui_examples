@@ -8,6 +8,7 @@
             "disabled_bg": "#cb6e61",
             "selected_bg": "#fb0091",
             "dark_bg": "#fb8691",
+            "disabled_dark_bg": "#db6671",
             "normal_text": "#202020",
             "hovered_text": "#303030",
             "selected_text": "#404040",
@@ -84,7 +85,7 @@
             "enable_arrow_buttons": "1"
         }
     },
-    "#slider_arrows_shared_misc":
+    "horizontal_slider.@arrow_button":
     {
         "misc":
         {
@@ -95,8 +96,6 @@
     },
     "horizontal_slider.#left_button":
     {
-        "prototype": "#slider_arrows_shared_misc",
-
         "misc":
         {
             "text_horiz_alignment": "left"
@@ -104,8 +103,6 @@
     },
     "horizontal_slider.#right_button":
     {
-        "prototype": "#slider_arrows_shared_misc",
-
         "misc":
         {
             "text_horiz_alignment": "right"
