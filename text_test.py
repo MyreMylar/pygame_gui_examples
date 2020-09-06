@@ -4,6 +4,7 @@ import pygame
 from pygame_gui.ui_manager import UIManager
 from pygame_gui.elements.ui_text_box import UITextBox
 from pygame_gui.core import IncrementalThreadedResourceLoader
+from pygame_gui import UI_TEXT_BOX_LINK_CLICKED
 
 """
 Font load time taken: 0.911 seconds.
@@ -141,7 +142,7 @@ while running:
                 html_text_line = create_large_text_box()
 
         if event.type == pygame.USEREVENT:
-            if event.user_type == 'ui_text_box_link_clicked':
+            if event.user_type == UI_TEXT_BOX_LINK_CLICKED:
                 if event.ui_element is htm_text_block_2:
                     if event.link_target == 'test':
                         print('clicked test link')
