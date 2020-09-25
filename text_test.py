@@ -126,7 +126,6 @@ ui_manager.print_unused_fonts()
 
 running = True
 
-clock = pygame.time.Clock()
 while running:
     time_delta = clock.tick(60)/1000.0
 
