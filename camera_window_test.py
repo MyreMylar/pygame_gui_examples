@@ -20,15 +20,16 @@ On Windows:
 class CameraWindow(pygame_gui.elements.UIWindow):
     def __init__(self,
                  rect: pygame.Rect,
-                 camera_id,
                  camera_name,
                  ui_manager: pygame_gui.core.interfaces.IUIManagerInterface):
         super().__init__(rect, ui_manager, window_display_title=camera_name, resizable=True)
 
         self.camera = None
 
-        self.camera = pygame.camera.Camera(camera_id, (160, 120))
+        self.camera = pygame.camera.Camera(camera_name, (640, 480))
         self.camera.start()
+
+        print(self.camera.get_controls())
 
         cam_rect = pygame.Rect((0, 0), self.get_container().rect.size)
         self.cam_image = pygame_gui.elements.UIImage(relative_rect=cam_rect,
@@ -52,6 +53,9 @@ class CameraWindow(pygame_gui.elements.UIWindow):
 pygame.init()
 pygame.camera.init()
 
+print(pygame.camera.get_backends())
+print(pygame.camera.list_cameras())
+
 pygame.display.set_caption('Quick Start')
 window_surface = pygame.display.set_mode((800, 600))
 manager = pygame_gui.UIManager((800, 600), 'data/themes/quick_theme.json')
@@ -62,11 +66,11 @@ background.fill(manager.ui_theme.get_colour('dark_bg'))
 
 cam_window_pos = [10, 10]
 num_connected_cameras = 1
-cam_names = ["My Camera", "My Boss"]
-for cam_id in range(0, num_connected_cameras):
+cam_names = pygame.camera.list_cameras()
+for cam_name in cam_names:
     cam_window_rect = pygame.Rect(0, 0, 400, 300)
     cam_window_rect.topleft = cam_window_pos
-    CameraWindow(cam_window_rect, cam_id, cam_names[cam_id], manager)
+    CameraWindow(cam_window_rect, cam_name, manager)
     cam_window_pos = (cam_window_pos[0] + 420,
                       cam_window_pos[1])
 

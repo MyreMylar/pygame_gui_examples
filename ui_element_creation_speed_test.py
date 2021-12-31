@@ -4,7 +4,7 @@ from cProfile import Profile
 
 import pygame
 import pygame_gui
-
+import os
 
 # (182 x rounded rectangles)
 
@@ -27,7 +27,7 @@ import pygame_gui
 # --------
 # Button creation time taken: 0.096 seconds.
 # Clear and recreation time taken: 0.095 seconds.
-
+print(os.getcwd())
 pygame.init()
 
 

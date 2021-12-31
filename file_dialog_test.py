@@ -41,18 +41,17 @@ class ImageLoadApp:
                 if event.type == pygame.QUIT:
                     self.is_running = False
 
-                if (event.type == pygame.USEREVENT and
-                        event.user_type == pygame_gui.UI_BUTTON_PRESSED and
+                if (event.type == pygame_gui.UI_BUTTON_PRESSED and
                         event.ui_element == self.load_button):
                     self.file_dialog = UIFileDialog(pygame.Rect(160, 50, 440, 500),
                                                     self.ui_manager,
                                                     window_title='Load Image...',
                                                     initial_file_path='data/images/',
+                                                    allow_picking_directories=True,
                                                     allow_existing_files_only=True)
                     self.load_button.disable()
 
-                if (event.type == pygame.USEREVENT and
-                        event.user_type == pygame_gui.UI_FILE_DIALOG_PATH_PICKED):
+                if event.type == pygame_gui.UI_FILE_DIALOG_PATH_PICKED:
                     if self.display_loaded_image is not None:
                         self.display_loaded_image.kill()
 
@@ -85,8 +84,7 @@ class ImageLoadApp:
                     except pygame.error:
                         pass
 
-                if (event.type == pygame.USEREVENT and
-                        event.user_type == pygame_gui.UI_WINDOW_CLOSE
+                if (event.type == pygame_gui.UI_WINDOW_CLOSE
                         and event.ui_element == self.file_dialog):
                     self.load_button.enable()
                     self.file_dialog = None

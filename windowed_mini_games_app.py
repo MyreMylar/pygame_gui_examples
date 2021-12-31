@@ -7,6 +7,8 @@ from pygame_gui.elements.ui_image import UIImage
 
 from pong.pong import PongGame
 
+PONG_WINDOW_SELECTED = pygame.event.custom_type()
+
 
 class PongWindow(UIWindow):
     def __init__(self, position, ui_manager):
@@ -28,15 +30,13 @@ class PongWindow(UIWindow):
 
     def process_event(self, event):
         handled = super().process_event(event)
-        if (event.type == pygame.USEREVENT and
-                event.user_type == pygame_gui.UI_BUTTON_PRESSED and
+        if (event.type == pygame_gui.UI_BUTTON_PRESSED and
                 event.ui_object_id == "#pong_window.#title_bar" and
                 event.ui_element == self.title_bar):
             handled = True
-            event_data = {'user_type': 'pong_window_selected',
-                          'ui_element': self,
+            event_data = {'ui_element': self,
                           'ui_object_id': self.most_specific_combined_id}
-            window_selected_event = pygame.event.Event(pygame.USEREVENT,
+            window_selected_event = pygame.event.Event(PONG_WINDOW_SELECTED,
                                                        event_data)
             pygame.event.post(window_selected_event)
         if self.is_active:
@@ -77,7 +77,7 @@ class MiniGamesApp:
 
                 self.ui_manager.process_events(event)
 
-                if event.type == pygame.USEREVENT and event.user_type == 'pong_window_selected':
+                if event.type == PONG_WINDOW_SELECTED:
                     event.ui_element.is_active = True
                     if event.ui_element == self.pong_window_1:
                         self.pong_window_2.is_active = False

@@ -20,7 +20,7 @@ class GUIopediaWindow(pygame_gui.elements.UIWindow):
         search_bar_bottom_margin = 2
         self.search_box = pygame_gui.elements.UITextEntryLine(pygame.Rect((150,
                                                                            search_bar_top_margin),
-                                                                          (240, 20)),
+                                                                          (230, 30)),
                                                               manager=manager,
                                                               container=self,
                                                               parent_element=self)
@@ -81,20 +81,19 @@ class GUIopediaWindow(pygame_gui.elements.UIWindow):
 
     def process_event(self, event):
         handled = super().process_event(event)
-        if event.type != pygame.USEREVENT:
-            return
-        if event.user_type == pygame_gui.UI_TEXT_BOX_LINK_CLICKED:
+
+        if event.type == pygame_gui.UI_TEXT_BOX_LINK_CLICKED:
             self.open_new_page(event.link_target)
             handled = True
 
-        if (event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED and
+        if (event.type == pygame_gui.UI_TEXT_ENTRY_FINISHED and
                 event.ui_element == self.search_box):
             results = self.search_pages(event.text)
             self.create_search_results_page(results)
             self.open_new_page('results')
             handled = True
 
-        if (event.user_type == pygame_gui.UI_BUTTON_PRESSED and
+        if (event.type == pygame_gui.UI_BUTTON_PRESSED and
                 event.ui_object_id == '#guiopedia_window.#home_button'):
             self.open_new_page('index')
             handled = True

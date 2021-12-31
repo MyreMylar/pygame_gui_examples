@@ -54,11 +54,12 @@ class EverythingWindow(UIWindow):
                                               50.0,
                                               (0.0, 100.0),
                                               self.ui_manager,
-                                              container=self)
+                                              container=self,
+                                              click_increment=5)
 
         self.slider_label = UILabel(pygame.Rect((int(self.rect.width / 2) + 250,
                                                  int(self.rect.height * 0.70)),
-                                                (27, 25)),
+                                                (28, 25)),
                                     str(int(self.test_slider.get_current_value())),
                                     self.ui_manager,
                                     container=self)
@@ -111,7 +112,7 @@ class EverythingWindow(UIWindow):
 
         self.health_bar = UIScreenSpaceHealthBar(pygame.Rect((int(self.rect.width / 9),
                                                               int(self.rect.height * 0.7)),
-                                                             (200, 20)),
+                                                             (200, 30)),
                                                  self.ui_manager,
                                                  container=self)
 
@@ -195,7 +196,7 @@ class OptionsUIApp:
 
         self.test_button = UIButton(pygame.Rect((int(self.options.resolution[0] / 2),
                                                  int(self.options.resolution[1] * 0.90)),
-                                                (100, 40)),
+                                                (120, 40)),
                                     '',
                                     self.ui_manager,
                                     tool_tip_text="<font face=fira_code color=normal_text size=2>"
@@ -211,7 +212,7 @@ class OptionsUIApp:
 
         self.test_button_2 = UIButton(pygame.Rect((int(self.options.resolution[0] / 3),
                                                    int(self.options.resolution[1] * 0.90)),
-                                                  (100, 40)),
+                                                  (110, 40)),
                                       'EVERYTHING',
                                       self.ui_manager,
                                       object_id='#everything_button')
@@ -219,7 +220,7 @@ class OptionsUIApp:
         self.test_button_3 = UIButton(pygame.Rect((int(self.options.resolution[0] / 6),
                                                    int(self.options.resolution[1] * 0.90)),
                                                   (100, 40)),
-                                      'Scaling?',
+                                      '|Scaling?',
                                       self.ui_manager,
                                       object_id='#scaling_button')
 
@@ -236,6 +237,8 @@ class OptionsUIApp:
                                                            (200, -1)),
                                                self.ui_manager,
                                                object_id='#main_text_entry')
+        #self.test_text_entry.set_text_length_limit(3)
+        self.test_text_entry.set_text('hello hello hello hello hello hello')
 
         current_resolution_string = (str(self.options.resolution[0]) +
                                      'x' +
@@ -247,9 +250,9 @@ class OptionsUIApp:
                                                          (200, 25)),
                                              self.ui_manager)
 
-        self.test_drop_down_2 = UIDropDownMenu(['Another', 'drop down', 'menu',
+        self.test_drop_down_2 = UIDropDownMenu(['Penguins', 'drop down', 'menu',
                                                 'testing', 'overlaps'],
-                                               'Another',
+                                               'Penguins',
                                                pygame.Rect((int(self.options.resolution[0] / 2),
                                                             int(self.options.resolution[1] * 0.25)),
                                                            (200, 25)),
@@ -330,15 +333,15 @@ class OptionsUIApp:
                          'This is a <a href="test">test</a> message to see if '
                          'this box <a href=actually_link>actually</a> works.'
                          ''
-                         'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br><br> '
+                         'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br>'
                          'In hac a habitasse to platea dictumst.<br>'
-                         ' <font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec '
-                         'porttitor.<br> Morbi'
-                         ' accumsan, lectus at'
-                         ' tincidunt to dictum, neque <font color=#879AF6>erat tristique'
-                         ' blob</font>,'
-                         ' sed a tempus for <b>nunc</b> dolor in nibh.<br>'
-                         ' Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet '
+                         '<font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec '
+                         'porttitor. <br>Morbi '
+                         'accumsan, lectus at '
+                         'tincidunt to dictum, neque <font color=#879AF6>erat tristique '
+                         'blob</font>, '
+                         'sed a tempus for <b>nunc</b> dolor in nibh.<br>'
+                         'Suspendisse in viverra dui <i>fringilla dolor laoreet</i>, sit amet '
                          'on pharetra a ante'
                          ' sollicitudin.</font>'
                          '<br><br>'
@@ -397,54 +400,54 @@ class OptionsUIApp:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_f:
                 print("self.ui_manager.focused_set:", self.ui_manager.focused_set)
 
-            if event.type == pygame.USEREVENT:
-                if (event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED and
-                        event.ui_object_id == '#main_text_entry'):
-                    print(event.text)
+            if (event.type == pygame_gui.UI_TEXT_ENTRY_FINISHED and
+                    event.ui_object_id == '#main_text_entry'):
+                print(event.text)
 
-                if event.user_type == pygame_gui.UI_TEXT_BOX_LINK_CLICKED:
-                    if event.link_target == 'test':
-                        print("clicked test link")
-                    elif event.link_target == 'actually_link':
-                        print("clicked actually link")
+            if event.type == pygame_gui.UI_TEXT_BOX_LINK_CLICKED:
+                if event.link_target == 'test':
+                    print("clicked test link")
+                elif event.link_target == 'actually_link':
+                    print("clicked actually link")
 
-                if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                    if event.ui_element == self.test_button:
-                        self.test_button.set_text(random.choice(['', 'Hover me!',
-                                                                 'Click this.',
-                                                                 'A Button']))
-                        self.create_message_window()
+            if event.type == pygame_gui.UI_BUTTON_PRESSED:
+                if event.ui_element == self.test_button:
+                    self.test_button.set_text(random.choice(['', 'Hover me!',
+                                                             'Click this',
+                                                             'A Button']))
+                    self.create_message_window()
 
-                    if event.ui_element == self.test_button_3:
-                        ScalingWindow(pygame.Rect((50, 50), (224, 224)), self.ui_manager)
-                    if event.ui_element == self.test_button_2:
-                        EverythingWindow(pygame.Rect((10, 10), (640, 480)), self.ui_manager)
+                if event.ui_element == self.test_button_3:
+                    ScalingWindow(pygame.Rect((50, 50), (224, 224)), self.ui_manager)
+                if event.ui_element == self.test_button_2:
+                    EverythingWindow(pygame.Rect((10, 10), (640, 480)), self.ui_manager)
 
-                    if event.ui_element == self.disable_toggle:
-                        if self.all_enabled:
-                            self.disable_toggle.set_text('Enable')
-                            self.all_enabled = False
-                            self.ui_manager.root_container.disable()
-                            self.disable_toggle.enable()
-                        else:
-                            self.disable_toggle.set_text('Disable')
-                            self.all_enabled = True
-                            self.ui_manager.root_container.enable()
+                if event.ui_element == self.disable_toggle:
+                    if self.all_enabled:
+                        self.disable_toggle.set_text('Enable')
+                        self.all_enabled = False
+                        self.ui_manager.root_container.disable()
+                        self.disable_toggle.enable()
+                        self.hide_toggle.enable()
+                    else:
+                        self.disable_toggle.set_text('Disable')
+                        self.all_enabled = True
+                        self.ui_manager.root_container.enable()
 
-                    if event.ui_element == self.hide_toggle:
-                        if self.all_shown:
-                            self.hide_toggle.set_text('Show')
-                            self.all_shown = False
-                            self.ui_manager.root_container.hide()
-                            self.hide_toggle.show()
-                        else:
-                            self.hide_toggle.set_text('Hide')
-                            self.all_shown = True
-                            self.ui_manager.root_container.show()
+                if event.ui_element == self.hide_toggle:
+                    if self.all_shown:
+                        self.hide_toggle.set_text('Show')
+                        self.all_shown = False
+                        self.ui_manager.root_container.hide()
+                        self.hide_toggle.show()
+                    else:
+                        self.hide_toggle.set_text('Hide')
+                        self.all_shown = True
+                        self.ui_manager.root_container.show()
 
-                if (event.user_type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED
-                        and event.ui_element == self.test_drop_down):
-                    self.check_resolution_changed()
+            if (event.type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED
+                    and event.ui_element == self.test_drop_down):
+                self.check_resolution_changed()
 
     def run(self):
         while self.running:
@@ -466,6 +469,15 @@ class OptionsUIApp:
 
             # draw graphics
             self.window_surface.blit(self.background_surface, (0, 0))
+
+            # Debug crap
+            # chunk = self.test_slider.right_button.drawable_shape.text_box_layout.layout_rows[0].items[0]
+            # pygame.draw.line(self.test_slider.right_button.image,
+            #                  pygame.Color('#FFFFFF'),
+            #                  self.test_slider.right_button.drawable_shape.text_box_layout.layout_rows[0].midleft,
+            #                  self.test_slider.right_button.drawable_shape.text_box_layout.layout_rows[0].midright,#chunk.centering_rect,
+            #                  1)
+
             self.ui_manager.draw_ui(self.window_surface)
 
             pygame.display.update()

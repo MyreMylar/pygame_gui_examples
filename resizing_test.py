@@ -124,7 +124,10 @@ while is_running:
                 debug_mode = False if debug_mode else True
                 manager.set_visual_debug_mode(debug_mode)
 
-        if (event.type == pygame.USEREVENT and event.user_type == 'ui_button_pressed' and
+            if event.key == pygame.K_l:
+                print(text_entry.get_text())
+
+        if (event.type == pygame_gui.UI_BUTTON_PRESSED and
                 event.ui_element == hello_button):
             print('Hello World!')
 

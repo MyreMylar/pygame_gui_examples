@@ -1,0 +1,25 @@
+{
+    "label":
+    {
+        "font":
+        [
+            {
+                "name": "montserrat",
+                "size": "12",
+                "bold": "0",
+                "italic": "0",
+                "regular_resource": {"package": "data.fonts",
+                                     "resource": "Montserrat-Regular.ttf"}
+            },
+            {
+                "name": "kosugimaru",
+                "locale": "ja",
+                "size": "12",
+                "bold": "0",
+                "italic": "0",
+                "regular_resource": {"package": "data.fonts",
+                                     "resource": "KosugiMaru-Regular.ttf"}
+            }
+        ]
+    }
+}
