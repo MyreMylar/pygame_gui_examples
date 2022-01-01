@@ -5,7 +5,7 @@ import pygame_gui
 pygame.init()
 
 
-pygame.display.set_caption('Quick Start')
+pygame.display.set_caption('Translations Test')
 window_surface = pygame.display.set_mode((800, 600))
 manager = pygame_gui.UIManager((800, 600),
                                theme_path='data/themes/translations_theme.json',
@@ -36,7 +36,7 @@ test_label = pygame_gui.elements.UILabel(pygame.Rect((10, 100), (150, 30)),
                                          manager)
 
 confirmation_dialog = pygame_gui.windows.UIConfirmationDialog(
-    pygame.Rect((50, 50), (300, 200)),
+    pygame.Rect((10, 250), (300, 200)),
     manager=manager,
     action_long_desc="examples.hello_world_message_text",
     blocking=False)
@@ -46,8 +46,6 @@ text_box = pygame_gui.elements.UITextBox(
         relative_rect=pygame.Rect(300, 100, 400, 200),
         manager=manager)
 
-file_dialog = pygame_gui.windows.UIFileDialog(pygame.Rect(160, 50, 440, 500),
-                                              manager)
 
 clock = pygame.time.Clock()
 is_running = True
