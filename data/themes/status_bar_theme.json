@@ -1,0 +1,57 @@
+{
+
+    "#progress_bar":
+    {
+        "colours": {
+            "filled_bar": "#D0E0FF,#90A0B0,-90",
+            "unfilled_bar": "#606060"
+        },
+        "misc": {
+            "shape": "rounded_rectangle",
+            "shape_corner_radius": "12"
+        }
+    },
+
+    "@player_status_bars":
+    {
+        "misc":
+        {
+            "shadow_width": "1",
+            "border_width": "0"
+        }
+    },
+
+    "#health_bar":
+    {
+        "colours": {
+            "filled_bar": "#AA4040D0",
+            "unfilled_bar": "#888888D0"
+        },
+        "misc":
+        {
+            "follow_sprite_offset": "-14,-20"
+        }
+    },
+    "#mana_bar":
+    {
+        "colours": {
+            "filled_bar": "#6666AAD0",
+            "unfilled_bar": "#888888D0"
+        },
+        "misc":
+        {
+            "follow_sprite_offset": "-14,-14"
+        }
+    },
+    "#stamina_bar":
+    {
+        "colours": {
+            "filled_bar": "#77CC77D0",
+            "unfilled_bar": "#888888D0"
+        },
+        "misc":
+        {
+            "follow_sprite_offset": "-14,-8"
+        }
+    }
+}
