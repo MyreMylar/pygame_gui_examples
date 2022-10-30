@@ -20,6 +20,7 @@ languages_list = ['pygame-gui.English',
                   'pygame-gui.Italian',
                   'pygame-gui.German',
                   'pygame-gui.Spanish',
+                  'pygame-gui.Polish',
                   'pygame-gui.Portuguese',
                   'pygame-gui.Indonesian',
                   'pygame-gui.Japanese',
@@ -72,6 +73,8 @@ while is_running:
                 manager.set_locale('de')
             elif event.text == 'pygame-gui.Spanish':
                 manager.set_locale('es')
+            elif event.text == 'pygame-gui.Polish':
+                manager.set_locale('pl')
             elif event.text == 'pygame-gui.Portuguese':
                 manager.set_locale('pt')
             elif event.text == 'pygame-gui.Indonesian':

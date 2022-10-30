@@ -83,6 +83,14 @@ while is_running:
             text_box.set_active_effect(pygame_gui.TEXT_EFFECT_TILT,
                                        effect_tag='test')
 
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_l:
+            text_box.set_active_effect(pygame_gui.TEXT_EFFECT_SHAKE,
+                                       params={'loop': False,
+                                               'frequency': 45,
+                                               'amplitude': 10,
+                                               'duration': 3.0},
+                                       effect_tag='test')
+
         if event.type == pygame.KEYDOWN and event.key == pygame.K_x:
             text_box.set_active_effect(pygame_gui.TEXT_EFFECT_TILT,
                                        effect_tag='shatter')

@@ -1,5 +1,7 @@
 import pygame
-import pygame_gui
+
+from pygame_gui import UIManager, UI_BUTTON_PRESSED
+from pygame_gui.elements import UIButton
 
 
 pygame.init()
@@ -7,15 +9,13 @@ pygame.init()
 
 pygame.display.set_caption('Quick Start')
 window_surface = pygame.display.set_mode((800, 600))
-manager = pygame_gui.UIManager((800, 600), 'data/themes/quick_theme.json')
+manager = UIManager((800, 600), 'data/themes/quick_theme.json')
 
 background = pygame.Surface((800, 600))
 background.fill(manager.ui_theme.get_colour('dark_bg'))
 
 
-hello_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((350, 280), (-1, -1)),
-                                            text='Hello',
-                                            manager=manager)
+hello_button = UIButton((350, 280), 'Hello')
 
 clock = pygame.time.Clock()
 is_running = True
@@ -25,7 +25,7 @@ while is_running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             is_running = False
-        if event.type == pygame_gui.UI_BUTTON_PRESSED:
+        if event.type == UI_BUTTON_PRESSED:
             if event.ui_element == hello_button:
                 print('Hello World!')
         manager.process_events(event)

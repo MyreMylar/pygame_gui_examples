@@ -4,16 +4,7 @@ import pygame_gui
 
 
 """
-Pygame Camera module is a bit tricky.
-
-On Windows:
-- Requires VideoCapture grabbed from here: https://www.lfd.uci.edu/~gohlke/pythonlibs/#videocapture
-  installed with 'pip install name_of_file.whl'
-- Doesn't work with python 3.8 and pygame 1.9.6 
-- Works fine on python 3.6 and pygame 1.9.6
-- Works fine with 3.8 and 2.0.0.dev6
-- 'list cameras' doesn't seem to actually list multiple usb cameras, they still work you just have 
-  to set the index yourself
+Uses Pygame Camera module to display a webcam in a window 
 """
 
 

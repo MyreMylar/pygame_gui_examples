@@ -73,6 +73,9 @@ while is_running:
                                                                       data_lock))
                     writer.start()
 
+                elif command == 'clear':
+                    console_window.clear_log()
+
         manager.process_events(event)
 
     if python_process is not None:
