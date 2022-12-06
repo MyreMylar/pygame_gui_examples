@@ -48,7 +48,8 @@ class ImageLoadApp:
                                                     window_title='Load Image...',
                                                     initial_file_path='data/images/',
                                                     allow_picking_directories=True,
-                                                    allow_existing_files_only=True)
+                                                    allow_existing_files_only=True,
+                                                    allowed_suffixes={""})
                     self.load_button.disable()
 
                 if event.type == pygame_gui.UI_FILE_DIALOG_PATH_PICKED:
