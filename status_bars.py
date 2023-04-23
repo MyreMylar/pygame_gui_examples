@@ -85,7 +85,7 @@ happy_sprite = HappySprite(sprite_list)
 progress_bar = pygame_gui.elements.UIStatusBar(pygame.Rect((100, 100), (200, 30)),
                                                manager,
                                                None,
-                                               object_id=ObjectID('#progress_bar'))
+                                               object_id=ObjectID('#progress_bar', '@UIStatusBar'))
 
 health_bar = pygame_gui.elements.UIStatusBar(pygame.Rect((0, 30), (50, 6)),
                                              manager,

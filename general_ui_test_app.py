@@ -3,6 +3,7 @@ import os
 import pygame
 import pygame_gui
 from collections import deque
+from typing import Optional
 
 from pygame_gui import UIManager, PackageResource
 
@@ -18,6 +19,7 @@ from pygame_gui.elements import UIPanel
 from pygame_gui.elements import UISelectionList
 
 from pygame_gui.windows import UIMessageWindow
+from pygame_gui.core import ObjectID
 
 
 import pygame
@@ -164,7 +166,7 @@ class OptionsUIApp:
         self.test_button_2 = None
         self.test_button_3 = None
         self.test_slider = None
-        self.test_text_entry = None
+        self.test_text_entry: Optional[UITextEntryLine] = None
         self.test_drop_down = None
         self.test_drop_down_2 = None
         self.panel = None
@@ -172,6 +174,7 @@ class OptionsUIApp:
         self.frame_timer = None
         self.disable_toggle = None
         self.hide_toggle = None
+        self.list: Optional[UISelectionList] = None
 
         self.message_window = None
 
@@ -215,7 +218,8 @@ class OptionsUIApp:
                                                   (110, 40)),
                                       'EVERYTHING',
                                       self.ui_manager,
-                                      object_id='#everything_button')
+                                      tool_tip_text="A <i>little</i> Tool Tip",
+                                      object_id=ObjectID(object_id='#everything_button'))
 
         self.test_button_3 = UIButton(pygame.Rect((int(self.options.resolution[0] / 6),
                                                    int(self.options.resolution[1] * 0.90)),
@@ -259,14 +263,14 @@ class OptionsUIApp:
                                                self.ui_manager)
 
         self.panel = UIPanel(pygame.Rect(50, 50, 200, 300),
-                             starting_layer_height=4,
+                             starting_height=4,
                              manager=self.ui_manager)
 
         UIButton(pygame.Rect(10, 10, 174, 30), 'Panel Button',
                  manager=self.ui_manager,
                  container=self.panel)
 
-        UISelectionList(pygame.Rect(10, 50, 174, 200),
+        self.list = UISelectionList(pygame.Rect(10, 50, 174, 200),
                         item_list=['Item 1',
                                    'Item 2',
                                    'Item 3',
@@ -299,6 +303,7 @@ class OptionsUIApp:
                                    "FPS: 0",
                                    self.ui_manager,
                                    object_id='#fps_counter')
+        self.fps_counter.set_tooltip("The <b>F</b>rames <b>P</b>er <b>S</b>econd", wrap_width=200, delay=0.1)
 
         self.frame_timer = UILabel(pygame.Rect(self.options.resolution[0] - 250,
                                                64,
@@ -400,6 +405,9 @@ class OptionsUIApp:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_f:
                 print("self.ui_manager.focused_set:", self.ui_manager.focused_set)
 
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
+                self.list.add_items(['New Item'])
+
             if (event.type == pygame_gui.UI_TEXT_ENTRY_FINISHED and
                     event.ui_object_id == '#main_text_entry'):
                 print(event.text)
@@ -416,6 +424,11 @@ class OptionsUIApp:
                                                              'Click this',
                                                              'A Button']))
                     self.create_message_window()
+
+                    if not self.test_text_entry.is_text_hidden:
+                        self.test_text_entry.set_text_hidden(True)
+                    else:
+                        self.test_text_entry.set_text_hidden(False)
 
                 if event.ui_element == self.test_button_3:
                     ScalingWindow(pygame.Rect((50, 50), (224, 224)), self.ui_manager)

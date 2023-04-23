@@ -3,6 +3,8 @@ from typing import Union
 import pygame
 import pygame_gui
 
+from pygame_gui.core.colour_gradient import ColourGradient
+
 """
 Testing the quality of doing cheaper gradients.
 """
@@ -88,16 +90,19 @@ manager = pygame_gui.UIManager((800, 600), 'data/themes/quick_theme.json')
 background = pygame.Surface((800, 600))
 background.fill(manager.get_theme().get_colour('dark_bg'))
 
-test_gradient_1 = Gradient(0, pygame.Color("#FF0000"), pygame.Color("#FF80FF"))
+test_gradient_1 = ColourGradient(-90, pygame.Color("#FF0000"), pygame.Color("#FF80FF"))
 
 long_thin_surf = pygame.Surface((300, 25))
-long_thin_surf = test_gradient_1.make_gradient_2(long_thin_surf)
+long_thin_surf.fill("white")
+test_gradient_1.apply_gradient_to_surface(long_thin_surf)
 
 tall_thin_surf = pygame.Surface((25, 300))
-tall_thin_surf = test_gradient_1.make_gradient_2(tall_thin_surf)
+tall_thin_surf.fill("white")
+test_gradient_1.apply_gradient_to_surface(tall_thin_surf)
 
 big_surf = pygame.Surface((300, 300))
-big_surf = test_gradient_1.make_gradient_2(big_surf)
+big_surf.fill("white")
+test_gradient_1.apply_gradient_to_surface(big_surf)
 
 
 # gradient 2
