@@ -16,6 +16,7 @@ background = pygame.Surface((800, 600))
 background.fill(manager.ui_theme.get_colour('dark_bg'))
 
 languages_list = ['pygame-gui.English',
+                  'pygame-gui.Korean',
                   'pygame-gui.French',
                   'pygame-gui.Italian',
                   'pygame-gui.German',
@@ -65,6 +66,8 @@ while is_running:
         if event.type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
             if event.text == 'pygame-gui.English':
                 manager.set_locale('en')
+            elif event.text == 'pygame-gui.Korean':
+                manager.set_locale('ko')
             elif event.text == 'pygame-gui.French':
                 manager.set_locale('fr')
             elif event.text == 'pygame-gui.Italian':
