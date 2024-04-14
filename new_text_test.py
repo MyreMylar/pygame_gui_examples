@@ -21,15 +21,15 @@ def test_app():
     ui_manager = pygame_gui.UIManager((800, 600), 'data/themes/theme_1.json')
 
     background = Surface((800, 600), depth=32)
-    background.fill(Color("#FFFFFF"))
+    background.fill(Color("#606060"))
 
     text_box = UITextBox(
         html_text="<body><font color=#E0E080>hey hey hey "
                   "what are the <a href=haps>haps</a> my "
                   "<u>brand new friend?</u> These are the "
                   "days of our <i>disco tent. </i>"
-                  "<shadow size=1 offset=0,0 color=#306090><font color=#E0F0FF><b>Why the "
-                  "long night</b></font></shadow> of <font color=regular_text>absolution</font>, "
+                  "<shadow size=2 offset=0,0 color=#306090><font color=#E0F0FF>Why the "
+                  "long night</font></shadow> of <font color=regular_text>absolution</font>, "
                   "shall <b>becometh </b>the man. Lest "
                   "forth "
                   "betwixt moon under one nation "
@@ -62,9 +62,9 @@ def test_app():
                 height_adjustment = (text_box.scroll_bar.start_percentage *
                                      text_block_full_height)
                 base_x = int(text_box.rect[0] + text_box.padding[0] + text_box.border_width +
-                             text_box.shadow_width + text_box.rounded_corner_offset)
+                             text_box.shadow_width + text_box.rounded_corner_width_offsets[0])
                 base_y = int(text_box.rect[1] + text_box.padding[1] + text_box.border_width +
-                             text_box.shadow_width + text_box.rounded_corner_offset - height_adjustment)
+                             text_box.shadow_width + text_box.rounded_corner_width_offsets[0] - height_adjustment)
                 text_box.text_box_layout.set_cursor_from_click_pos((event.pos[0] - base_x,
                                                                          event.pos[1] - base_y))
 

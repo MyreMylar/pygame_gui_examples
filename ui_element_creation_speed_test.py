@@ -27,6 +27,11 @@ import os
 # --------
 # Button creation time taken: 0.096 seconds.
 # Clear and recreation time taken: 0.095 seconds.
+
+# in 0.6.10
+# ---------
+# Button creation time taken: 0.062 seconds.
+# Clear and recreation time taken: 0.057 seconds.
 print(os.getcwd())
 pygame.init()
 

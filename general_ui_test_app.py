@@ -1,6 +1,4 @@
 import random
-import os
-import pygame
 import pygame_gui
 from collections import deque
 from typing import Optional
@@ -155,11 +153,11 @@ class OptionsUIApp:
         self.ui_manager = UIManager(self.options.resolution,
                                     PackageResource(package='data.themes',
                                                     resource='theme_2.json'))
-        self.ui_manager.preload_fonts([{'name': 'fira_code', 'point_size': 10, 'style': 'bold'},
-                                       {'name': 'fira_code', 'point_size': 10, 'style': 'regular'},
-                                       {'name': 'fira_code', 'point_size': 10, 'style': 'italic'},
-                                       {'name': 'fira_code', 'point_size': 14, 'style': 'italic'},
-                                       {'name': 'fira_code', 'point_size': 14, 'style': 'bold'}
+        self.ui_manager.preload_fonts([{'name': 'noto_sans', 'point_size': 10, 'style': 'bold'},
+                                       {'name': 'noto_sans', 'point_size': 10, 'style': 'regular'},
+                                       {'name': 'noto_sans', 'point_size': 10, 'style': 'italic'},
+                                       {'name': 'noto_sans', 'point_size': 14, 'style': 'italic'},
+                                       {'name': 'noto_sans', 'point_size': 14, 'style': 'bold'}
                                        ])
 
         self.test_button = None
@@ -202,7 +200,7 @@ class OptionsUIApp:
                                                 (120, 40)),
                                     '',
                                     self.ui_manager,
-                                    tool_tip_text="<font face=fira_code color=normal_text size=2>"
+                                    tool_tip_text="<font face=noto_sans color=normal_text size=2>"
                                                   "<b><u>Test Tool Tip</u></b>"
                                                   "<br><br>"
                                                   "A little <i>test</i> of the "
@@ -219,7 +217,7 @@ class OptionsUIApp:
                                       'EVERYTHING',
                                       self.ui_manager,
                                       tool_tip_text="A <i>little</i> Tool Tip",
-                                      object_id=ObjectID(object_id='#everything_button'))
+                                      object_id=ObjectID(object_id='#everything_button', class_id=None))
 
         self.test_button_3 = UIButton(pygame.Rect((int(self.options.resolution[0] / 6),
                                                    int(self.options.resolution[1] * 0.90)),
@@ -241,7 +239,7 @@ class OptionsUIApp:
                                                            (200, -1)),
                                                self.ui_manager,
                                                object_id='#main_text_entry')
-        #self.test_text_entry.set_text_length_limit(3)
+        # self.test_text_entry.set_text_length_limit(3)
         self.test_text_entry.set_text('hello hello hello hello hello hello')
 
         current_resolution_string = (str(self.options.resolution[0]) +
@@ -251,15 +249,15 @@ class OptionsUIApp:
                                              current_resolution_string,
                                              pygame.Rect((int(self.options.resolution[0] / 2),
                                                           int(self.options.resolution[1] * 0.3)),
-                                                         (200, 25)),
+                                                         (200, 30)),
                                              self.ui_manager)
 
         self.test_drop_down_2 = UIDropDownMenu(['Penguins', 'drop down', 'menu',
                                                 'testing', 'overlaps'],
                                                'Penguins',
                                                pygame.Rect((int(self.options.resolution[0] / 2),
-                                                            int(self.options.resolution[1] * 0.25)),
-                                                           (200, 25)),
+                                                            int(self.options.resolution[1] * 0.22)),
+                                                           (200, 30)),
                                                self.ui_manager)
 
         self.panel = UIPanel(pygame.Rect(50, 50, 200, 300),
@@ -271,30 +269,30 @@ class OptionsUIApp:
                  container=self.panel)
 
         self.list = UISelectionList(pygame.Rect(10, 50, 174, 200),
-                        item_list=['Item 1',
-                                   'Item 2',
-                                   'Item 3',
-                                   'Item 4',
-                                   'Item 5',
-                                   'Item 6',
-                                   'Item 7',
-                                   'Item 8',
-                                   'Item 9',
-                                   'Item 10',
-                                   'Item 11',
-                                   'Item 12',
-                                   'Item 13',
-                                   'Item 14',
-                                   'Item 15',
-                                   'Item 16',
-                                   'Item 17',
-                                   'Item 18',
-                                   'Item 19',
-                                   'Item 20'
-                                   ],
-                        manager=self.ui_manager,
-                        container=self.panel,
-                        allow_multi_select=True)
+                                    item_list=['Item 1',
+                                               'Item 2',
+                                               'Item 3',
+                                               'Item 4',
+                                               'Item 5',
+                                               'Item 6',
+                                               'Item 7',
+                                               'Item 8',
+                                               'Item 9',
+                                               'Item 10',
+                                               'Item 11',
+                                               'Item 12',
+                                               'Item 13',
+                                               'Item 14',
+                                               'Item 15',
+                                               'Item 16',
+                                               'Item 17',
+                                               'Item 18',
+                                               'Item 19',
+                                               'Item 20'
+                                               ],
+                                    manager=self.ui_manager,
+                                    container=self.panel,
+                                    allow_multi_select=True)
 
         self.fps_counter = UILabel(pygame.Rect(self.options.resolution[0] - 250,
                                                20,
@@ -336,8 +334,8 @@ class OptionsUIApp:
             window_title='Test Message Window',
             html_message='<font color=normal_text>'
                          'This is a <a href="test">test</a> message to see if '
-                         'this box <a href=actually_link>actually</a> works.'
-                         ''
+                         'this box <a href=actually_link>actually</a> works. '
+                         '<br>'
                          'In <i>bibendum</i> orci et velit</b> gravida lacinia.<br><br>'
                          'In hac a habitasse to platea dictumst.<br>'
                          '<font color=#4CD656 size=4>Vivamus I interdum mollis lacus nec '
@@ -378,11 +376,11 @@ class OptionsUIApp:
         time_taken = self.button_response_timer.tick() / 1000.0
         # currently taking about 0.35 seconds down from 0.55 to create
         # an elaborately themed message window.
-        # still feels a little slow but it's better than it was.
+        # still feels a little slow, but it's better than it was.
         print("Time taken to create message window: " + str(time_taken))
 
     def check_resolution_changed(self):
-        resolution_string = self.test_drop_down.selected_option.split('x')
+        resolution_string = self.test_drop_down.selected_option[0].split('x')
         resolution_width = int(resolution_string[0])
         resolution_height = int(resolution_string[1])
         if (resolution_width != self.options.resolution[0] or
@@ -483,7 +481,7 @@ class OptionsUIApp:
             # draw graphics
             self.window_surface.blit(self.background_surface, (0, 0))
 
-            # Debug crap
+            # Debug stuff
             # chunk = self.test_slider.right_button.drawable_shape.text_box_layout.layout_rows[0].items[0]
             # pygame.draw.line(self.test_slider.right_button.image,
             #                  pygame.Color('#FFFFFF'),

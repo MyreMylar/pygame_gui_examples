@@ -102,7 +102,7 @@ test_gradient_1.apply_gradient_to_surface(tall_thin_surf)
 
 big_surf = pygame.Surface((300, 300))
 big_surf.fill("white")
-test_gradient_1.apply_gradient_to_surface(big_surf)
+test_gradient_1.apply_gradient_to_surface(big_surf, pygame.Rect(0, 0, 150, 150))
 
 
 # gradient 2

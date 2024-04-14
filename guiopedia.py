@@ -158,12 +158,12 @@ class GUIopediaApp:
         self.background.fill(pygame.Color('#707070'))
 
         self.manager = pygame_gui.UIManager((800, 600), "data/themes/guiopedia_theme.json")
-        self.manager.preload_fonts([{'name': 'fira_code', 'point_size': 24, 'style': 'bold'},
-                                    {'name': 'fira_code', 'point_size': 24, 'style': 'bold_italic'},
-                                    {'name': 'fira_code', 'point_size': 18, 'style': 'bold'},
-                                    {'name': 'fira_code', 'point_size': 18, 'style': 'regular'},
-                                    {'name': 'fira_code', 'point_size': 18, 'style': 'bold_italic'},
-                                    {'name': 'fira_code', 'point_size': 14, 'style': 'bold'}
+        self.manager.preload_fonts([{'name': 'noto_sans', 'point_size': 24, 'style': 'bold'},
+                                    {'name': 'noto_sans', 'point_size': 24, 'style': 'bold_italic'},
+                                    {'name': 'noto_sans', 'point_size': 18, 'style': 'bold'},
+                                    {'name': 'noto_sans', 'point_size': 18, 'style': 'regular'},
+                                    {'name': 'noto_sans', 'point_size': 18, 'style': 'bold_italic'},
+                                    {'name': 'noto_sans', 'point_size': 14, 'style': 'bold'}
                                     ])
 
         self.guiopedia_window = GUIopediaWindow(manager=self.manager)

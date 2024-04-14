@@ -49,7 +49,7 @@ print(pygame.camera.list_cameras())
 
 pygame.display.set_caption('Quick Start')
 window_surface = pygame.display.set_mode((800, 600))
-manager = pygame_gui.UIManager((800, 600), 'data/themes/quick_theme.json')
+manager = pygame_gui.UIManager((800, 600), 'data/themes/camera_theme.json')
 
 background = pygame.Surface((800, 600))
 background.fill(manager.ui_theme.get_colour('dark_bg'))
