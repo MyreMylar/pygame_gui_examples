@@ -5,7 +5,7 @@
         [
             {
                 "name": "montserrat",
-                "size": "12",
+                "size": "16",
                 "bold": "0",
                 "italic": "0",
                 "regular_resource": {"package": "data.fonts",
@@ -14,11 +14,56 @@
             {
                 "name": "kosugimaru",
                 "locale": "ja",
-                "size": "12",
+                "size": "16",
                 "bold": "0",
                 "italic": "0",
                 "regular_resource": {"package": "data.fonts",
                                      "resource": "KosugiMaru-Regular.ttf"}
+            },
+            {
+                "name": "amiri",
+                "locale": "ar",
+                "size": "16",
+                "bold": "0",
+                "italic": "0",
+                "regular_resource": {"package": "data.fonts",
+                                     "resource": "Amiri-Regular.ttf"}
+            },
+            {
+                "name": "noto_rashi",
+                "locale": "he",
+                "size": "24",
+                "bold": "0",
+                "italic": "0",
+                "regular_resource": {"package": "data.fonts",
+                                     "resource": "NotoRashiHebrew-Regular.ttf"}
+            },
+            {
+                "name": "song_myung",
+                "locale": "ko",
+                "size": "24",
+                "bold": "0",
+                "italic": "0",
+                "regular_resource": {"package": "data.fonts",
+                                     "resource": "SongMyung-Regular.ttf"}
+            },
+            {
+                "name": "ma_shan_zhang",
+                "locale": "zh",
+                "size": "24",
+                "bold": "0",
+                "italic": "0",
+                "regular_resource": {"package": "data.fonts",
+                                     "resource": "MaShanZheng-Regular.ttf"}
+            },
+            {
+                "name": "noto_serif_georgian",
+                "locale": "ge",
+                "size": "24",
+                "bold": "0",
+                "italic": "0",
+                "regular_resource": {"package": "data.fonts",
+                                     "resource": "NotoSerifGeorgian-Regular.ttf"}
             }
         ]
     }

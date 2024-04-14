@@ -112,10 +112,10 @@ while is_running:
     if debug_chunks:
         text_box_offset = (text_box.padding[0] + text_box.border_width +
                            text_box.shadow_width +
-                           text_box.rounded_corner_offset,
+                           text_box.rounded_corner_width_offsets[0],
                            text_box.padding[1] + text_box.border_width +
                            text_box.shadow_width +
-                           text_box.rounded_corner_offset)
+                           text_box.rounded_corner_width_offsets[0])
         for row in text_box.text_box_layout.layout_rows:
             for chunk in row.items:
                 debug_rect = chunk.copy()

@@ -3,7 +3,7 @@ import pygame
 import pygame_gui
 
 from pygame_gui.ui_manager import UIManager
-from pygame_gui.elements.ui_text_box import UITextBox
+from pygame_gui.elements import UITextBox, UIScrollingContainer, UIDropDownMenu
 from pygame_gui.core import IncrementalThreadedResourceLoader, ObjectID
 from pygame_gui import UI_TEXT_BOX_LINK_CLICKED, UI_TEXT_EFFECT_FINISHED
 
@@ -27,7 +27,7 @@ def create_large_text_box():
             'tulip squirrel slippers save socks certainly.<br>'
             'Vestibulum in <i>commodo me</i> tellus in nisi finibus a sodales.<br>Vestibulum '
             '<font size=2>hendrerit mi <i>sed nulla</i> scelerisque</font>, posuere ullamcorper '
-            'sem pulvinar.'
+            'sem pulvinar. '
             'Nulla at pulvinar a odio, a dictum dolor.<br>Maecenas at <font size=6><b>tellus a'
             'tortor. a<br>'
             'In <i><effect id=spin_me>bibendum</effect></i> orci et velit</b> gravida lacinia.'
@@ -92,9 +92,9 @@ ui_manager.preload_fonts([{'name': 'Montserrat', 'html_size': 4.5, 'style': 'bol
                           {'name': 'Montserrat', 'html_size': 4, 'style': 'bold'},
                           {'name': 'Montserrat', 'html_size': 4, 'style': 'regular'},
                           {'name': 'Montserrat', 'html_size': 4, 'style': 'italic'},
-                          {'name': 'fira_code', 'html_size': 2, 'style': 'regular'},
-                          {'name': 'fira_code', 'html_size': 2, 'style': 'bold'},
-                          {'name': 'fira_code', 'html_size': 2, 'style': 'bold_italic'}
+                          {'name': 'noto_sans', 'html_size': 2, 'style': 'regular'},
+                          {'name': 'noto_sans', 'html_size': 2, 'style': 'bold'},
+                          {'name': 'noto_sans', 'html_size': 2, 'style': 'bold_italic'}
                           ])
 loader.start()
 finished_loading = False
@@ -108,7 +108,7 @@ html_text_line = create_large_text_box()
 time_2 = clock.tick()
 
 
-htm_text_block_2 = UITextBox('<font face=fira_code size=2 color=#000000><b>Hey, What the heck! </b>'
+htm_text_block_2 = UITextBox('<font face=noto_sans size=2 color=#000000><b>Hey, What the heck! </b>'
                              '<br><br>'
                              '<body bgcolor=#A0A050>This is</body> some <a href="test">text</a> '
                              'in a different box,'
@@ -117,7 +117,7 @@ htm_text_block_2 = UITextBox('<font face=fira_code size=2 color=#000000><b>Hey, 
                              '<body bgcolor=#990000>What if we do a really long word?</body> '
                              '<b><i>derp FALALALALALALALXALALALXALALALALAAPaaaaarp gosh'
                              '</b></i></font>',
-                             pygame.Rect((520, 10), (250, 200)),
+                             pygame.Rect((520, 10), (250, -1)),
                              manager=ui_manager,
                              object_id=ObjectID(class_id="@white_text_box",
                                                 object_id="#text_box_2"))
@@ -130,6 +130,26 @@ print('Time taken 2nd window:', time_3/1000.0, 'seconds.')
 
 
 ui_manager.print_unused_fonts()
+
+scrolling_container = UIScrollingContainer(pygame.Rect(520, 250, 250, 300),
+                                           allow_scroll_x=False,
+                                           should_grow_automatically=False)
+scrolling_container.set_scrollable_area_dimensions((250, 600))
+
+
+text_box_inside_scrolling_container = UITextBox(html_text="Some text inside a text box, itself"
+                                                          " inside a container that scrolls",
+                                                relative_rect=pygame.Rect(20, 20, 150, 200),
+                                                container=scrolling_container)
+
+scrolling_text_box_inside_scrolling_container = UITextBox(html_text="Some text inside a scrolling text box, itself"
+                                                                    " inside a container that scrolls. "
+                                                                    "scrolling should work correctly with the mousewheel, "
+                                                                    "depending on whether we are hovering this text box, or"
+                                                                    " whether we are hovering other stuff in the "
+                                                                    "scrolling container",
+                                                          relative_rect=pygame.Rect(20, 280, 180, 200),
+                                                          container=scrolling_container)
 
 running = True
 

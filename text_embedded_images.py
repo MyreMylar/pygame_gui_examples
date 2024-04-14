@@ -15,7 +15,7 @@ background = pygame.Surface((800, 600))
 background.fill(manager.ui_theme.get_colour('dark_bg'))
 
 
-text_box = UITextBox('<font face=fira_code size=3 color=#FFFFFF>'
+text_box = UITextBox('<font face=noto_sans size=3 color=#FFFFFF>'
                      ''
                      '<img src="data/images/test_images/london.jpg" '
                      'float=left '

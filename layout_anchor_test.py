@@ -333,6 +333,25 @@ dd4 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((-10, -40), (-1, 30
                                             'bottom_target': dd3,
                                             'right_target': dd2})
 
+dd5 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((-10, -40), (-1, 30)),
+                                   text='DD5', manager=manager,
+                                   container=dynamic_dimensions_window,
+                                   anchors={'top': 'bottom',
+                                            'left': 'right',
+                                            'bottom': 'bottom',
+                                            'right': 'right',
+                                            'right_target': dd3})
+
+dd6 = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((-10, -40), (-1, 30)),
+                                   text='DD6', manager=manager,
+                                   container=dynamic_dimensions_window,
+                                   anchors={'top': 'bottom',
+                                            'left': 'right',
+                                            'bottom': 'bottom',
+                                            'right': 'right',
+                                            'right_target': dd4,
+                                            'bottom_target': dd5})
+
 clock = pygame.time.Clock()
 is_running = True
 
@@ -345,6 +364,11 @@ while is_running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
                 random.choice([db1, db2, db3, db4, dc1, dc2, dc3, dc4]).set_text(
+                    random.choice(['Heya', 'Sup', 'Whoooah', 'Amazing!',
+                                   'Yipes!', 'Doh', 'Xylophonic']))
+
+            if event.key == pygame.K_d:
+                random.choice([dd1, dd2]).set_text(
                     random.choice(['Heya', 'Sup', 'Whoooah', 'Amazing!',
                                    'Yipes!', 'Doh', 'Xylophonic']))
 

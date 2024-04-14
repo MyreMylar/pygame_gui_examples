@@ -159,7 +159,8 @@
         {
             "selected_bg": "#fb0091A0,#20fdA0A0,0",
             "normal_text": "#FFFFFF,#FFA0A0,90",
-            "selected_text": "#FFFFFF,#A0A0FF,90"
+            "selected_text": "#FFFFFF,#A0A0FF,90",
+            "text_cursor": "#A0A0FF"
         },
         "misc":
         {
@@ -381,7 +382,7 @@
         },
         "font":
         {
-            "name": "fira_code",
+            "name": "noto_sans",
             "size": "32"
         }
     },
@@ -394,7 +395,7 @@
         },
         "font":
         {
-            "name": "fira_code",
+            "name": "noto_sans",
             "size": "14"
         }
     }

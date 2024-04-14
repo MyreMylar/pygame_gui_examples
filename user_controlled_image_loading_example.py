@@ -7,7 +7,7 @@ from pygame_gui.core import IncrementalThreadedResourceLoader
 
 # 20 * image buttons
 # Sequential Image loading time taken: 27.362 seconds.
-
+# 0.6.10 loading time taken: 10.411 seconds
 pygame.init()
 
 
