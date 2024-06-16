@@ -41,52 +41,16 @@ def test_app():
         relative_rect=pygame.Rect(100, 100, 400, 200),
         manager=ui_manager)
 
-    text_box.scroll_bar.has_moved_recently = True
-    text_box.update(5.0)
-
     is_running = True
-    row_key_pos = 13
-    typing_row = len(text_box.text_box_layout.layout_rows) - 1
-
     clock = pygame.time.Clock()
 
-    cursor_toggle = 0
     while is_running:
         time_delta = clock.tick(60)/1000.0
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_running = False
 
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == pygame.BUTTON_LEFT:
-                text_block_full_height = text_box.text_box_layout.layout_rect.height
-                height_adjustment = (text_box.scroll_bar.start_percentage *
-                                     text_block_full_height)
-                base_x = int(text_box.rect[0] + text_box.padding[0] + text_box.border_width +
-                             text_box.shadow_width + text_box.rounded_corner_width_offsets[0])
-                base_y = int(text_box.rect[1] + text_box.padding[1] + text_box.border_width +
-                             text_box.shadow_width + text_box.rounded_corner_width_offsets[0] - height_adjustment)
-                text_box.text_box_layout.set_cursor_from_click_pos((event.pos[0] - base_x,
-                                                                         event.pos[1] - base_y))
-
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
-                text_box.text_box_layout.set_text_selection(48, 245)
-
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
-                text_box.text_box_layout.set_text_selection(56, 220)
-
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
-                text_box.text_box_layout.set_text_selection(0, 5)
-
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_f:
-                text_box.text_box_layout.set_text_selection(0, 4)
-
             ui_manager.process_events(event)
-
-        cursor_toggle += time_delta
-        if cursor_toggle >= 0.4:
-            cursor_toggle = 0.0
-            text_box.text_box_layout.toggle_cursor()
-            text_box.redraw_from_text_block()
 
         display_surface.blit(background, (0, 0))
 
